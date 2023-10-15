@@ -1,0 +1,14 @@
+.box-dieuBietOn {
+    width: 1120px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.c {
+    width: 100px;
+    margin: 0 auto;
+    height: 100px;
+    background-color: red;
+    text-align: center;
+    border-radius: 50%;
+}
