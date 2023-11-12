@@ -102,3 +102,7 @@
     right: 0px;
     position: absolute;
 }
+
+.descDBO {
+    line-height: 44px!important;
+}

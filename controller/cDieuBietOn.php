@@ -3,7 +3,7 @@
     {
         public function index($maND)
         {
-            $time = $_REQUEST['time']?? date('mY');
+            $time = $_REQUEST['time'] ?? date('mY');
             $month = substr($time, 0, 2);
             $year = substr($time, 2);
 

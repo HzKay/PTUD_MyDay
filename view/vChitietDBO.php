@@ -12,7 +12,7 @@
         <div class="content-dbo mt-3">
             <?php
                 echo "<span class='text-black-50'>{$result['thoiGian']}</span>";
-                echo "<h3 class='mt-2'>{$result['noiDung']}</h3>";
+                echo "<h3 class='mt-2 descDBO'>{$result['noiDung']}</h3>";
             ?>
         </div>
     </div>

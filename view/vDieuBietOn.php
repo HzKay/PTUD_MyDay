@@ -1,6 +1,7 @@
  <?php
     include './view/navbar/vHeader.php';
     include './view/navbar/vNavbar.php';
+    $now = isset($_GET['time']) ? $_GET['time'] : date('mY');
  ?>   
 
 <div class="box">
@@ -37,30 +38,33 @@
             <ul class="dbo-list">
                 <?php
                     $numDBO = mysqli_num_rows($result);
-                    $id=0;
-                    $angle = 360/$numDBO;
-                    while ($row = mysqli_fetch_array($result))
+                    if($numDBO > 0 )
                     {
-                        $angleOfItem = $id * $angle;
-                        $id++;
-
-                        if($angleOfItem > 90 && $angleOfItem < 270)
+                        $id=0;
+                        $angle = 360/$numDBO;
+                        while ($row = mysqli_fetch_array($result))
                         {
-                            echo "
-                            <li class='dbo-item' style='transform: rotate({$angleOfItem}deg);' id='id-{$id}'>
-                                <a href='?controller=dieuBietOn&action=chiTietDBO&time={$_GET['time']}&maDBO={$row['maDBO']}' class='dbo-decrise flip-dbo-item'>{$id}. {$row['noiDung']}</a>
-                            </li>
-                            ";
+                            $angleOfItem = $id * $angle;
+                            $id++;
+    
+                            if($angleOfItem > 90 && $angleOfItem < 270)
+                            {
+                                echo "
+                                <li class='dbo-item' style='transform: rotate({$angleOfItem}deg);' id='id-{$id}'>
+                                    <a href='?controller=dieuBietOn&action=chiTietDBO&time={$now}&maDBO={$row['maDBO']}' class='dbo-decrise flip-dbo-item'>{$id}. {$row['noiDung']}</a>
+                                </li>
+                                ";
+                            }
+                            else
+                            {
+                                echo "
+                                <li class='dbo-item' style='transform: rotate({$angleOfItem}deg);' id='id-{$id}'>
+                                    <a href='?controller=dieuBietOn&action=chiTietDBO&time={$now}&maDBO={$row['maDBO']}' class='dbo-decrise'>{$id}. {$row['noiDung']}</a>
+                                </li>
+                                ";
+                            }
                         }
-                        else
-                        {
-                            echo "
-                            <li class='dbo-item' style='transform: rotate({$angleOfItem}deg);' id='id-{$id}'>
-                                <a href='?controller=dieuBietOn&action=chiTietDBO&time={$_GET['time']}&maDBO={$row['maDBO']}' class='dbo-decrise'>{$id}. {$row['noiDung']}</a>
-                            </li>
-                            ";
-                        }
-                    }
+                    } 
                 ?>
 
             </ul>
