@@ -21,9 +21,14 @@
             require 'view/vDieuBietOn.php';
         }
 
-        public function chiTietDBO()
+        public function getDBO($maND)
         {
-            require "./view/vChitietDBO.php";
+            $maDBO = $_GET['maDBO'];
+            require './model/mDieuBietOn.php';
+            $mDieuBietOn = new mDieuBietOn();
+            $result = $mDieuBietOn->getDescDBO($maDBO, $maND);
+            $result = mysqli_fetch_array($result);
+            require './view/vChitietDBO.php';
         }
     }
 ?>

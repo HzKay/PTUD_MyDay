@@ -27,5 +27,15 @@
             $this->closeConnect($conn);
             return $result;
         }
+
+        public function getDescDBO($maDBO, $maND)
+        {
+            $conn = $this->connect();
+            $query = "SELECT * FROM `dieuBietOn` WHERE `maND` = '{$maND}' and `maDBO`= '{$maDBO}'; ";
+            $result = $conn->query($query);
+            
+            $this->closeConnect($conn);
+            return $result;
+        }
     }
 ?>

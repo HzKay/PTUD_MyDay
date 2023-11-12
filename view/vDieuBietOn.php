@@ -48,7 +48,7 @@
                         {
                             echo "
                             <li class='dbo-item' style='transform: rotate({$angleOfItem}deg);' id='id-{$id}'>
-                                <a href='?controller=dieuBietOn&action=chiTietDBO' class='dbo-decrise flip-dbo-item'>{$id}. {$row['noiDung']}</a>
+                                <a href='?controller=dieuBietOn&action=chiTietDBO&time={$_GET['time']}&maDBO={$row['maDBO']}' class='dbo-decrise flip-dbo-item'>{$id}. {$row['noiDung']}</a>
                             </li>
                             ";
                         }
@@ -56,7 +56,7 @@
                         {
                             echo "
                             <li class='dbo-item' style='transform: rotate({$angleOfItem}deg);' id='id-{$id}'>
-                                <a href='?controller=dieuBietOn&action=chiTietDBO' class='dbo-decrise'>{$id}. {$row['noiDung']}</a>
+                                <a href='?controller=dieuBietOn&action=chiTietDBO&time={$_GET['time']}&maDBO={$row['maDBO']}' class='dbo-decrise'>{$id}. {$row['noiDung']}</a>
                             </li>
                             ";
                         }

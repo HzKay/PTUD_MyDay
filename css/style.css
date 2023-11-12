@@ -95,3 +95,10 @@
 .dbo-list {
     list-style: none;
 }
+
+/* chiTietDBO */
+.close-btn {
+    top: -16px;
+    right: 0px;
+    position: absolute;
+}

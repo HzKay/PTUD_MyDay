@@ -23,7 +23,7 @@ switch ($controller)
                 $cDBO->index($maND);
                 break;
             case 'chiTietDBO':
-                $cDBO->chiTietDBO();
+                $cDBO->getDBO($maND);
                 break;
             default:
 
