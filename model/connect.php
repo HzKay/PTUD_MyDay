@@ -18,6 +18,21 @@
         return $conn;
     }
 
+    public function excuteQuery ($sql)
+    {
+        $conn = $this->connect();
+
+        $isSuccess = $conn->query($sql);
+        if($isSuccess)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     public function closeConnect($conn)
     {
         mysqli_close($conn);

@@ -1,3 +1,3 @@
 <?php
-    require "./controller/cDieuBietOn.php";
+    require "./route.php";
 ?>
