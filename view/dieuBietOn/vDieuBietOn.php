@@ -1,6 +1,6 @@
  <?php
-    include './view/navbar/vHeader.php';
-    include './view/navbar/vNavbar.php';
+    include_once './view/navbar/vHeader.php';
+    include_once './view/navbar/vNavbar.php';
     $now = isset($_GET['time']) ? $_GET['time'] : date('mY');
  ?>   
 
@@ -72,6 +72,6 @@
     </div>    
 </div>
 <?php
-    include './view/navbar/vFooter.php';
+    include_once './view/navbar/vFooter.php';
 ?>
     

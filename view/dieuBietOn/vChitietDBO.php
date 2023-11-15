@@ -7,7 +7,7 @@
     <div class="position-absolute rounded top-50 bg-light p-2 start-50 h-50 translate-middle" style="width: 30%">
         <div class="header-desc text-end position-relative border-bottom">
             <h3 class="text-center">Điều biết ơn</h3>
-            <a href="?controller=dieuBietOn&action=index&time=<?php echo $_REQUEST['time']?>" class="position-absolute close-btn btn btn-light fs-2 pe-3">&times;</a>
+            <a href="?controller=dieuBietOn&action=index&time=<?php echo $_REQUEST['time']?>" class="position-absolute close-btn btn btn-light pe-3">&times;</a>
         </div>
         <div class="content-dbo mt-3">
             <?php

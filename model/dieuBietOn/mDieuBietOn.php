@@ -23,7 +23,6 @@
             WHERE maND = '{$maND}'
             ORDER BY thoiGian DESC";
             $result = $conn->query($query);
-
             $this->closeConnect($conn);
             return $result;
         }
@@ -33,7 +32,6 @@
             $conn = $this->connect();
             $query = "SELECT * FROM `dieuBietOn` WHERE `maND` = '{$maND}' and `maDBO`= '{$maDBO}'; ";
             $result = $conn->query($query);
-            
             $this->closeConnect($conn);
             return $result;
         }

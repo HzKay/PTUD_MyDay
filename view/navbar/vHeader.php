@@ -8,7 +8,8 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/main.js"></script>
-    <title>Trang chủ</title>
+    <title>My Day</title>
 </head>
 <body>

@@ -98,11 +98,17 @@
 
 /* chiTietDBO */
 .close-btn {
-    top: -16px;
+    top: -7px;
     right: 0px;
     position: absolute;
+    font-size: 18px;
 }
 
 .descDBO {
     line-height: 44px!important;
+}
+
+#emotionChart{
+    width: 100%!important;
+    height: 478px!important;
 }

@@ -4,3 +4,5 @@
 
     include './view/navbar/vFooter.php';
 ?>
+
+Trang chủ nè

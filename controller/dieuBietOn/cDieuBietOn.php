@@ -7,7 +7,7 @@
             $month = substr($time, 0, 2);
             $year = substr($time, 2);
 
-            require './model/mDieuBietOn.php';
+            require './model/dieuBietOn/mDieuBietOn.php';
             $mDieuBietOn = new mDieuBietOn();
             $result = $mDieuBietOn->getDBOOfMonth($month, $year, $maND);
             $arr = $mDieuBietOn->getTimeDBO($maND);
@@ -18,17 +18,22 @@
                 $option[] = $item['thoiGian'];
             }
 
-            require 'view/vDieuBietOn.php';
+            require 'view/dieuBietOn/vDieuBietOn.php';
         }
 
         public function getDBO($maND)
         {
             $maDBO = $_GET['maDBO'];
-            require './model/mDieuBietOn.php';
+            require './model/dieuBietOn/mDieuBietOn.php';
             $mDieuBietOn = new mDieuBietOn();
             $result = $mDieuBietOn->getDescDBO($maDBO, $maND);
             $result = mysqli_fetch_array($result);
-            require './view/vChitietDBO.php';
+            require './view/dieuBietOn/vChitietDBO.php';
+        }
+
+        public function createDBO($maND)
+        {
+            require './view/dieuBietOn/vCreateDBO.php';
         }
     }
 ?>
