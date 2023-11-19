@@ -1,3 +1,8 @@
+<?php
+define("PAGETITLE", 'Một tháng nhìn lại');
+include_once './view/navbar/vHeader.php';
+include_once './view/navbar/vNavbar.php';
+?>
 <div class="d-flex justify-content-center flex-column text-center">
 <h3 style="text-align: center;" class="mt-4 mb-2">Biểu đồ cảm xúc của tôi</h3>
 <?php echo  "<p><strong>Ngày: </strong>".date ("d/m/Y"). "</p><br>";  ?>
@@ -47,3 +52,6 @@ var chart = new Chart(ctx, {
 </script>
 
 </div>
+<?php
+include_once './view/navbar/vFooter.php';
+?>

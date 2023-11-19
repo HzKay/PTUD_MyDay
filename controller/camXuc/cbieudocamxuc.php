@@ -70,7 +70,28 @@ class controlbieudocamxuc{
 
         include'./view/camXuc/chart.php';
     }
+
+    function getViewNhapCamXuc()
+    {
+        require_once './view/camXuc/vNhapCamXuc.php';
+    }
+
+    function saveEmotion()
+    {
+        $maND = $_SESSION['userID'];
+        $camXuc = $_REQUEST['emotion'][0];
+
+        $mBieuDoCX = new modelbieudocamxuc();
+        $status = $mBieuDoCX->saveEmotion($camXuc, $maND);
+
+        if($status == 1)
+        {
+            echo "<script>alert('Lưu cảm xúc thành công!')</script>";
+            header('location: index.php?controller=camXuc&action=index');
+        } else
+        {
+            echo "<script>alert('Lỗi, lưu cảm xúc không thành công!')</script>";
+        }
+    }
 }
-
-
 ?>

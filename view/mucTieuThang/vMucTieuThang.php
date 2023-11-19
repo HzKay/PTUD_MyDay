@@ -1,4 +1,5 @@
 <?php
+    define("PAGETITLE", 'Xem mục tiêu tháng');
     include_once "./view/navbar/vHeader.php";
     include_once "./view/navbar/vNavbar.php";
 ?>

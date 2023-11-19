@@ -1,4 +1,5 @@
 <?php
+    define("PAGETITLE", 'Chi tiết điều biết ơn');
     include './view/navbar/vHeader.php';
  ?>   
 

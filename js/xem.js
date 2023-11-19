@@ -3,12 +3,8 @@ $(document).ready(function(){
 $(".btn_submit").click(async function(){
     btn = $(this).attr("value")
     nam = $("#select1").val()
-    console.log(nam)
-    // $(this).css({
-    //     "color" : "red"
-    // })
-    // console.log(typeof btn)
-    await getMonth(btn,nam).then((data)=>{
+    maND = $("#maND").val()
+    await getMonth(btn,nam, maND).then((data)=>{
         // console.log(data)
         if(data.date){
         $("#view1").html(`<p>${data.than}</p>`)
@@ -22,12 +18,11 @@ $(".btn_submit").click(async function(){
             alert("Bạn không có dữ liệu của tháng vừa chọn!")
         }
     })
-    // console.log(btn)
 })
 
-    const getMonth = async (btn,nam)=>{
+    const getMonth = async (btn,nam, maND)=>{
     const res = await $.ajax({
-        url: `api/getdate.php?btn='${btn}'&nam=${nam}`,
+        url: `./controller/motThangNhinLai/getdate.php?btn='${btn}'&nam=${nam}&maND=${maND}`,
         method: "POST",
         dataType: "JSON"
     })

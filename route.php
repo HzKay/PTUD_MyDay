@@ -1,4 +1,28 @@
 <?php
+require_once './controller/login/cLogin.php';
+$cLogin = new cLogin();
+session_start();
+if(isset($_SESSION['username']) && isset($_SESSION['password']) && isset($_SESSION['userID']))
+{
+    $isValidate = $cLogin->authenUser($_SESSION['userID'], $_SESSION['username'], $_SESSION['password']);
+
+    if($isValidate == 1) 
+    {
+        $action = $_REQUEST['action'] ?? "index";
+        $controller = $_REQUEST['controller'] ?? "index";
+        $maND = $_SESSION['userID'];
+    }
+    else
+    {
+        $controller = "login";
+        $action = $_REQUEST['action'] ?? "index";
+    }
+        
+} else
+{
+    $controller = "login";
+    $action = $_REQUEST['action'] ?? "index";
+}
 
 require_once './controller/dieuBietOn/cDieuBietOn.php';
 require_once './controller/cIndex.php';
@@ -7,46 +31,67 @@ require_once './view/camXuc/vbieudocamxuc.php';
 require_once './controller/danhGia/cdanhgia.php';
 require_once './view/viecQuanTrong/vDanhGia.php';
 require_once './controller/login/cLogin.php';
+require_once './controller/camXuc/cbieudocamxuc.php';
+require_once './controller/motThangNhinLai/cMTNL.php';
 
-$maND = '1';
 $cDBO = new cDieuBietOn();
 $cIndex = new indexController();
 $cMucTieuThang = new cMucTieuThang();
 $bDCamXuc= new viewbieudocamxuc();
+$cCamXuc = new controlbieudocamxuc();
 $danhGia = new viewdanhgia();
-$login = new classLogin();
-
-$action = $_GET['action']?? "index";
-$controller = $_GET['controller']?? "index";
-
-// if(isset($_POST['username']) && isset($_POST['password']))
-// {
-//     $action = $_GET['action']?? "index";
-//     $controller = $_GET['controller']?? "index";
-// } else
-// {
-//     $action = "login";
-//     $controller = "login";
-// }
+$cMotThangNL = new cMotThangNL();
 
 switch ($controller)
 {
+    case 'login':
+        switch ($action)
+        {
+            case 'index':
+                $cLogin->viewLoginForm();
+                break;
+            case 'login':
+                $cLogin->login();
+                break;
+            case 'vRegister':
+                $cLogin->viewRegisForm();
+                break;
+            case 'register':
+                $cLogin->register();
+                break;
+            case 'vForget':
+                $cLogin->viewForgetForm();
+                break;
+            case 'forget':
+                $cLogin->forgetPass();
+                break;
+            case 'logout':
+                $cLogin->logout();
+                break;
+            default: 
+                echo 'Erorr 404</br><h1>Không nhận ra action LOGIN</h1>';
+                break;
+        }
+        break;
     case "index":
-        $cIndex->getIndex();
+        $cIndex->vIndex();
         break;
 
     case "dieuBietOn":
         switch ($action)
         {
             case 'index':
-                $cDBO->index($maND);
+                $cDBO->index();
                 break;
             case 'chiTietDBO':
                 $cDBO->getDBO($maND);
                 break;
             case "create":
-                $cDBO->createDBO($maND);
+                $cDBO->getViewCreateDBO($maND);
                 break;
+            case "save":
+                $cDBO->saveDieuBietOn();
+            break;
             default:
                 echo 'Erorr 404</br><h1>Không nhận ra action</h1>';
         }
@@ -66,7 +111,10 @@ switch ($controller)
         switch ($action)
             {
                 case 'create':
-                    echo "Tạo nè";
+                    $cCamXuc->getViewNhapCamXuc();
+                    break;
+                case 'insert':
+                    $cCamXuc->saveEmotion();
                     break;
                 case 'index':
                     $bDCamXuc->hienBieuDo($maND);
@@ -83,10 +131,28 @@ switch ($controller)
                 case 'danhGia':
                     $danhGia->viewAlldanhgia($maND);
                 break;
+                case 'insert':
+                    require './controller/viecQuanTrong/cViecQuanTrong.php';
+                break;
+            }
+        break;
+    case "motThangNhinLai":
+        switch ($action)
+        {
+                case 'index':
+                    $cMotThangNL->viewMotThangNL();
+                break;
+                case 'create':
+                    $cMotThangNL->viewCreteMTNL();
+                break;
+                case 'save':
+                    $cMotThangNL->insertConTentMTNL();
+                break;
             }
         break;
     default:
-            $login->login();
+        var_dump($controller);
+        echo 'Erorr 404</br><h1>Không nhận ra controller</h1>';
     ;
 }
 

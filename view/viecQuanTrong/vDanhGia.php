@@ -1,10 +1,11 @@
 <?php
-include_once './view/navbar/vHeader.php';
-include_once './view/navbar/vNavbar.php';
 class viewdanhgia{
     function viewAlldanhgia($maND){
         $p = new controldanhgia();
         $tbldanhgia = $p->getAlldanhgia($maND);
+        define("PAGETITLE", 'Đánh giá công việc');
+        include_once './view/navbar/vHeader.php';
+        include_once './view/navbar/vNavbar.php';
         if($tbldanhgia){
             if($tbldanhgia->num_rows > 0){
                 echo "<div class='mt-5 d-flex align-items-center flex-column w-75 text-center mx-auto justify-content-center'><h2>Đánh giá công việc hôm nay</h2>";
@@ -47,7 +48,7 @@ include_once("./controller/danhGia/cdanhgia.php");
 if(isset($_REQUEST["submit"])){
     $trang = isset($_REQUEST["trangthai"]) ? $_REQUEST["trangthai"] : array();
    
-    $ghi = $_REQUEST["ghichu"];
+    $ghi = isset($_REQUEST["ghichu"]) ?? '';
     if(strlen($ghi) > 200){
         echo "<script>alert('Ghi chú không được vượt quá 200 ký tự')</script>";
     } else {

@@ -1,3 +1,3 @@
 <?php
-    require "./route.php";
+    require_once "./route.php";
 ?>

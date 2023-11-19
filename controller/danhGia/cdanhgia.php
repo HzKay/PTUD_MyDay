@@ -13,6 +13,5 @@ class controldanhgia{
         $kqInsert = $p -> luu($trang, $ghi,$ma, $maND);
         return $kqInsert; // True thành công , false ko thành công
     }
-    
 }
 ?>

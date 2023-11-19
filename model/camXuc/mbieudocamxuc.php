@@ -30,5 +30,13 @@ class modelbieudocamxuc extends connectDB {
        
         return $table;
     }
+
+    function saveEmotion($camXuc, $maND)
+    {
+        $query = "INSERT INTO `camXuc` (`giaTri`, `thoiGian`, `maND`) VALUES ('{$camXuc}', current_timestamp(), '{$maND}')";
+        $status = $this->excuteQuery($query);
+
+        return $status;
+    }
 }
 ?>

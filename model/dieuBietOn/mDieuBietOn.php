@@ -35,5 +35,13 @@
             $this->closeConnect($conn);
             return $result;
         }
+
+        public function saveDieuBietOn($noiDungDBO, $maND)
+        {
+            $query = "INSERT INTO `dieuBietOn`(`thoiGian`, `noiDung`, `maND`) VALUES (current_timestamp(), '{$noiDungDBO}', '$maND')";
+            $result = $this->excuteQuery($query);
+
+            return $result;
+        }
     }
 ?>

@@ -1,0 +1,9 @@
+.color-change-btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .color-change-btn.clicked {
+    color: #fff; /* Màu chữ khi click */
+  }

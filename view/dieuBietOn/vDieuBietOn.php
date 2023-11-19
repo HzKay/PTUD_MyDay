@@ -1,4 +1,5 @@
  <?php
+    define("PAGETITLE", 'Điều biết ơn');
     include_once './view/navbar/vHeader.php';
     include_once './view/navbar/vNavbar.php';
     $now = isset($_GET['time']) ? $_GET['time'] : date('mY');
@@ -7,10 +8,7 @@
 <div class="box">
     <div class="dbo-box">
         <div class="dbo-container">
-            <form action="" class="form-dbo d-flex" method="get">
-                <input name='controller' hidden value='dieuBietOn'>
-                <input name='action' hidden value='index'>
-                
+            <form action="./?controller=dieuBietOn&action=index" class="form-dbo d-flex" method="post">                
                 <?php
                     echo "<select class='form-select' name='time'>";
                     foreach ($option as $item)
