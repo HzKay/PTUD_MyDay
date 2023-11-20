@@ -10,7 +10,7 @@
                 <?php echo '<h5 class="mb-4">'.$chuDeThang.'</h5>';?>
             </div>
             <div class="mucTieuThang text-center mt-5">
-                <h4 class="fw-bold d-3">Mục tiêu tháng</h4>
+                <h4 class="fw-bold d-3 mb-3">Mục tiêu tháng</h4>
                 <ul class="list-mtt" style="list-style:none;">
                     <?php
                         for ($i=0; $i < count($listMTT); $i++)

@@ -11,11 +11,40 @@ class modelbieudocamxuc extends connectDB {
         return $table;
     }
 
-    function getCTVan($nhom)
+    function getAllCTVan($nhom)
     {
         $conn = $this->connect();
         $query = "SELECT * FROM cauTuVan WHERE nhom = {$nhom}";
         
+        $table = mysqli_query($conn, $query);
+       
+        return $table;
+    }
+
+    function getCTVan($maCTV)
+    {
+        $conn = $this->connect();
+        $query = "SELECT * FROM cauTuVan WHERE `maCTV` = {$maCTV}";
+        
+        $table = mysqli_query($conn, $query);
+       
+        return $table;
+    }
+
+    function saveAdvice($maCTV, $maND)
+    {
+        $conn = $this->connect();
+        $query = "INSERT INTO nguoiDung_CauTuVan (`maND`, `maCTV`) VALUES ('{$maND}', '{$maCTV}')";
+        $table = mysqli_query($conn, $query);
+       
+        return $table;
+    }
+
+    function checkAdvice($thang, $nam, $maND)
+    {
+        $conn = $this->connect();
+        $query = "SELECT maCTV FROM nguoiDung_CauTuVan WHERE MONTH(`thangNam`) = '{$thang}' AND YEAR(`thangNam`) = '{$nam}' AND `maND` = '{$maND}'";
+
         $table = mysqli_query($conn, $query);
        
         return $table;

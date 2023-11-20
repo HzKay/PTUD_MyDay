@@ -18,7 +18,7 @@
             <input type="text" name="controller" value="login" hidden id="">
             <input type="text" name="action" value="login" hidden id="">
             <label class="form-label" for="maND">Tên đăng nhập</label>
-            <input class="form-control" type="text" id="maND" name="txtUsername" required>
+            <input class="form-control" type="text" id="maND" name="txtUsername" required placeholder="Email hoặc số điện thoại">
         
             <label class="form-label mt-3" for="matKhau">Mật Khẩu</label>
             <input class="form-control" type="password" id="matKhau" name="txtMatKhau" required>

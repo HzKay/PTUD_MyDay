@@ -1,4 +1,5 @@
 <?php
+// include_once("./model/camXuc/mbieudocamxuc.php");
 include_once("./model/camXuc/mbieudocamxuc.php");
 
 class controlbieudocamxuc{
@@ -11,22 +12,46 @@ class controlbieudocamxuc{
     function getRandomAdvice($emotionScore){
         $nhom = 0;
         if($emotionScore <= 50){
-            $nhom = 1;
-        } else if($emotionScore <= 100){
             $nhom = 2;
-        } else {
+        } else if($emotionScore <= 100){
             $nhom = 3;
+        } else {
+            $nhom = 1;
         }
         
         $mCamXuc = new modelbieudocamxuc();
-        $table = $mCamXuc->getCTVan($nhom);
+        $table = $mCamXuc->getAllCTVan($nhom);
         
         $rows = [];
         while($row = mysqli_fetch_array($table)){
             $rows[] = $row;
         }
+        $max = mysqli_num_rows($table)-1;
+        $id = rand(0, $max);
+        return $rows[$id];
+    }
+
+    function getAdvice($maCTV){
+        $mCamXuc = new modelbieudocamxuc();
+        $table = $mCamXuc->getCTVan($maCTV);
+        $row = mysqli_fetch_array($table);
         
-        return $rows[array_rand($rows)];
+        return $row;
+    }
+
+    function checkAdvice($thang, $nam, $maND){
+        $mCamXuc = new modelbieudocamxuc();
+        $table = $mCamXuc->checkAdvice($thang, $nam, $maND);
+        $row = mysqli_fetch_array($table);
+        return $row['maCTV'];
+    }
+
+    function saveAdviceOfUser($maCTV, $maND){
+        $mCamXuc = new modelbieudocamxuc();
+        $table = $mCamXuc->saveAdvice($maCTV, $maND);
+        $row = mysqli_fetch_array($table);
+        
+        return $row;
     }
 
     function veBieuDoCamXuc($maND)
@@ -87,7 +112,7 @@ class controlbieudocamxuc{
         if($status == 1)
         {
             echo "<script>alert('Lưu cảm xúc thành công!')</script>";
-            header('location: index.php?controller=camXuc&action=index');
+            header('location: index.php?controller=dieuBietOn&action=create');
         } else
         {
             echo "<script>alert('Lỗi, lưu cảm xúc không thành công!')</script>";

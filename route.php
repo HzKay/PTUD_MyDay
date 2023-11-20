@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 require_once './controller/login/cLogin.php';
 $cLogin = new cLogin();
 session_start();
@@ -33,6 +34,8 @@ require_once './view/viecQuanTrong/vDanhGia.php';
 require_once './controller/login/cLogin.php';
 require_once './controller/camXuc/cbieudocamxuc.php';
 require_once './controller/motThangNhinLai/cMTNL.php';
+require_once './controller/suKien/cSuKien.php';
+require_once './controller/thoiQuen/cThoiQuen.php';
 
 $cDBO = new cDieuBietOn();
 $cIndex = new indexController();
@@ -41,6 +44,8 @@ $bDCamXuc= new viewbieudocamxuc();
 $cCamXuc = new controlbieudocamxuc();
 $danhGia = new viewdanhgia();
 $cMotThangNL = new cMotThangNL();
+$cSuKien = new cSuKien();
+$cThoiQuen = new cThoiQuen();
 
 switch ($controller)
 {
@@ -69,7 +74,7 @@ switch ($controller)
                 $cLogin->logout();
                 break;
             default: 
-                echo 'Erorr 404</br><h1>Không nhận ra action LOGIN</h1>';
+                $cLogin->viewLoginForm();
                 break;
         }
         break;
@@ -129,7 +134,7 @@ switch ($controller)
                     $cMucTieuThang->index($maND);
                 break;
                 case 'danhGia':
-                    $danhGia->viewAlldanhgia($maND);
+                    $danhGia->viewAlldanhgia($maND); 
                 break;
                 case 'insert':
                     require './controller/viecQuanTrong/cViecQuanTrong.php';
@@ -150,9 +155,30 @@ switch ($controller)
                 break;
             }
         break;
+    case "suKien":
+        switch ($action)
+        {
+            case 'save':
+                $cSuKien->saveSuKien();
+                break;
+        }
+        break;
+    case "thoiQuen":
+        switch ($action)
+        {
+            case 'index':
+                $cThoiQuen->index();
+            break;
+            case 'create':
+                $cThoiQuen->viewFormCreate();
+            break;
+            case 'save':
+                $cThoiQuen->saveThoiQuen();
+            break;
+        }
+        break;
     default:
-        var_dump($controller);
-        echo 'Erorr 404</br><h1>Không nhận ra controller</h1>';
+        $cIndex->vIndex();
     ;
 }
 

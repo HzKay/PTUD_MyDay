@@ -30,18 +30,38 @@
         <hr>
         <div id="calendar"></div>
     </div>
-    <div class="border mt-3 w-100">
-        <table>
+    <div class="border mt-3 w-100 p-3">
+        <div class="header-job d-flex align-items-center justify-content-between">
+            <h4 class="">Công việc quan trọng</h4>
+            <div class="text-right">
+                <p class="fw-bold"><?php echo date('d/m/Y')?></p>
+            </div>
+        </div>
+        <table class="table">
             <thead>
                 <tr>
-                    <td>
-                        Tên công việc
-                    </td>
-                    <td>
-                        Thời gian
-                    </td>
+                <th scope="col">Số thứ tự</th>
+                <th scope="col" colspan="2">Tên công việc</th>
+                <th scope="col">Thời gian</th>
                 </tr>
             </thead>
+            <tbody>
+                <?php
+                   $i = 1;
+                   while ($job = mysqli_fetch_array($jobList))
+                   {
+                        $time = date('H:i', strtotime($job['thoiGianTH']));
+                        echo "
+                        <tr>
+                            <th scope='row'>{$i}</th>
+                            <td colspan='2'>{$job['noiDung']}</td>
+                            <td>{$time}</td>
+                        </tr>
+                       ";
+                       $i++;
+                   }
+                ?>
+            </tbody>
         </table>
     </div>
 </div>
@@ -74,16 +94,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" name="addEvent" method="get">
+                <form action="./?controller=suKien&action=save" name="addEvent" method="get">
                     <label for="txtTitle" class="form-label">Tên sự kiện</label>
                     <input type="text" name="txtTitle" id="txtTitle" class="form-control">
 
                     <label for="txtTime">Thời gian</label>
                     <input type="date" name="txtTime" id=txtTime class="form-control">
+        
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn border btn-light" name="btnSave" id="btnSave" data-dismiss="modal">Lưu</button>
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-light" name="btnSave" data-dismiss="modal">Lưu</button>
             </div>
         </div>
     </div>
@@ -124,16 +145,10 @@
 
         $('#btnSave').on('click', function ()
         {
-            var title = $('#txtTitle').val();
-            var time = $('#txtTime').val();
-                // Lấy URL đầy đủ
-            // Lấy vị trí thư mục hiện tại
-            var currentPath = window.location.pathname;
-
-            // In ra console
-            console.log('Vị trí thư mục hiện tại:', currentPath);
-            // window.location.href = "./route.php";
-            $('#btnSave').modal('hide');
+            var eventName = $('#txtTitle').val();
+            var eventDate = $('#txtTime').val();
+            var link = './?controller=suKien&action=save&txtTitle=' + eventName + '&txtTime=' + eventDate;
+            window.location.href = link;
         });
     });
 </script>

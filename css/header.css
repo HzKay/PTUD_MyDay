@@ -9,11 +9,10 @@ html {
 }
 .container{
     width: 100%;
-    height: 200vh;
 }
 
 header {
-    background-color: gray;
+    background-color: #FFB6C1;
     width: 100%;
     height: 90px;
     display: flex;
@@ -22,7 +21,6 @@ header {
 .logo-img {
     width: 70px; 
     height: 70px;
-    border-radius:50%;
 }
 .search{
     width: 60%;
@@ -97,14 +95,15 @@ nav div{
     width: auto;
     height: auto;
     margin-top: 10px;
-    background-color: rgb(170, 155, 155);
+    background-color: Salmon;
     padding-top: 10px;
+    border-radius: 5px;
 }
 
 nav a{
     text-decoration: none;
     padding: 0px 10px;
-    color: white;
+    color: black;
 }
 nav a:hover{
     color: #fff;

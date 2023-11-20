@@ -7,7 +7,7 @@ include_once './view/navbar/vNavbar.php';
 ?>
 <main class="container">
      <h4 style="text-align: center; margin-bottom: 30px; margin-top:26px">Xem một tháng nhìn lại</h4>
-    <form class="row" method="post" style="text-align: center; border-top: 2px solid black;" id="form1">
+    <form class="row" method="post" style="text-align: center; border-top: 2px solid black;" id="form1" action="">
         <input type="text" name="maND" id="maND" value="<?php echo $_SESSION['userID']?>" hidden>
         <section class="col-sm-5" style="border-right:2px solid black; padding-top: 20px;">
             <div style="margin-bottom: 10px;" >Chọn tháng bạn muốn xem</div>
@@ -60,7 +60,7 @@ include_once './view/navbar/vNavbar.php';
                 Những điều bạn đã làm để phát triển TRÍ tuệ.
             </label>
                 <div type="view" name="view3" class="form-control" id="view3"  style="height: 80px; width: 340px;max-width: 500px; max-height: 100px; background-color:#aacde1;"></div>
-            <button id="submit" type="button" class="btn btn-dark" name="submit" style="margin: 10px 0 0 250px">Quay lại</button>
+            <a href="./?controller=index&action=index" class="btn btn-light" style="margin: 10px 0 0 250px">Quay lại</a>
         </section>
     </form>
 </main>
