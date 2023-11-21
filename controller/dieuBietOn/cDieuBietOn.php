@@ -48,7 +48,7 @@
             if($status == 1)
             {
                 echo "<script>alert('Thêm điều biết ơn thành công')</script>";   
-                header('location: ./?controller=dieuBietOn&action=index');
+                header('location: ./?controller=viecQuanTrong&action=create');
             } else {
                 echo "<script>alert('Gặp lỗi khi thêm điều biết ơn')</script>";  
                 require_once './view/dieuBietOn/vCreateDBO.php';

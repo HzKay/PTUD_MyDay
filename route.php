@@ -36,6 +36,7 @@ require_once './controller/camXuc/cbieudocamxuc.php';
 require_once './controller/motThangNhinLai/cMTNL.php';
 require_once './controller/suKien/cSuKien.php';
 require_once './controller/thoiQuen/cThoiQuen.php';
+require_once './controller/viecQuanTrong/cViecQuanTrong.php';
 
 $cDBO = new cDieuBietOn();
 $cIndex = new indexController();
@@ -46,6 +47,7 @@ $danhGia = new viewdanhgia();
 $cMotThangNL = new cMotThangNL();
 $cSuKien = new cSuKien();
 $cThoiQuen = new cThoiQuen();
+$cViecQuanTrong = new cViecQuanTrong();
 
 switch ($controller)
 {
@@ -139,8 +141,11 @@ switch ($controller)
                 case 'danhGia':
                     $danhGia->viewAlldanhgia($maND); 
                 break;
-                case 'insert':
-                    require './controller/viecQuanTrong/cViecQuanTrong.php';
+                case 'save':
+                    $cViecQuanTrong->saveJob();
+                break;
+                case 'create':
+                    $cViecQuanTrong->vCreateForm();
                 break;
             }
         break;
@@ -177,8 +182,8 @@ switch ($controller)
             break;
             case 'save':
                 $cThoiQuen->saveThoiQuen();
+            }
             break;
-        }
         break;
     default:
         $cIndex->vIndex();

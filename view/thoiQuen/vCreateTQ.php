@@ -3,8 +3,6 @@
     include_once './view/navbar/vHeader.php';
     include_once './view/navbar/vNavbar.php';
 ?>
-
-<body>
     <div class="container">
         <div style="width: 100%; height: 400px; margin-top: 20px;" class="text-center">
             <div>
