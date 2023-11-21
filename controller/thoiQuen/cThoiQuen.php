@@ -18,10 +18,12 @@
             
             header('location: ./?controller=thoiQuen');
         }
+
         public function viewFormCreate()
         {
             require_once './view/thoiQuen/vCreateTQ.php';
         }
+
         function index()
         {
             require_once './model/thoiQuen/mThoiQuen.php';
@@ -33,18 +35,30 @@
             $nam = date('Y');
             $numHabit = mysqli_num_rows($xem);
 
-            // $array = [];
+            $habitList = [];
+            $status= [];
+            while ($thoiQuen = mysqli_fetch_array($xem))
+            {
+                $habitList[] = $thoiQuen['noiDung'];
+                // $array[] = $thoiQuen['noiDung'];
+            }
             
-            // while ($thoiQuen = mysqli_fetch_array($xem))
-            // {
-            //     $arr = [];
-            //     $temp = $mThoiQuen->getStatusTq($thoiQuen['noiDung'], $thang, $nam, $maND);
-            //     while($trangThai = mysqli_fetch_array($temp))
-            //     {
-            //         $arr[] = $trangThai['trangThai'];
-            //     }
-            // }
-            include_once "./view/thoiQuen/vBieuDoTQ.php";
+            foreach($habitList as $habit) {
+                $temp = $mThoiQuen->getStatusTq($habit, $thang, $nam, $maND);
+                $status[] =  $this->convertToArray($temp);// $this->convertToArray()
+            }
+            
+            include "./view/thoiQuen/vBieuDoTQ.php";
+        }
+
+        private function convertToArray($temp)
+        {
+            $arr = [];
+            while($trangThai = mysqli_fetch_array($temp))
+                {
+                    $arr[] = $trangThai['trangThai'];
+                }
+            return $arr;
         }
     }
 ?>

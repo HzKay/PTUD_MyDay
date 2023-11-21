@@ -6,6 +6,7 @@ class mThoiQuen {
         $conn = new connectDB();
         $sql = "SELECT DISTINCT noiDung FROM `thoiQuen` WHERE `maND` = {$maND} AND DATE_FORMAT(`thangNam`, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')";
         $result = mysqli_query($conn->connect(), $sql);
+        $conn->closeConnect($conn->connect());
         return $result;
     }
 
@@ -13,6 +14,7 @@ class mThoiQuen {
         $conn = new connectDB();
         $sql = "SELECT trangThai FROM `thoiQuen` WHERE `noiDung` = N'{$noiDung}' AND YEAR(`thangNam`) = '{$nam}' AND MONTH(`thangNam`) = '{$thang}' AND `maND` = {$maND}";
         $result = mysqli_query($conn->connect(), $sql);
+        $conn->closeConnect($conn->connect());
         return $result;
     }
 

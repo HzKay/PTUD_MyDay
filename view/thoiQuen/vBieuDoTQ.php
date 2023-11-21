@@ -68,14 +68,14 @@
                     echo "</thead>
                     <tbody>
                     ";
-                    if (mysqli_num_rows($xem) > 0) {
-                        $i=0;
-                        while ($row = mysqli_fetch_assoc($xem)) {
+                    if ($numHabit > 0) {
+                        for($i=0; $i < $numHabit; $i++)
+                        {
                             echo "<tr class='height_row'>";
-                            echo "<td colspan='2'>{$row["noiDung"]}</td>";
+                            echo "<td colspan='2'>{$habitList[$i]}</td>";
                             for ($day = 1; $day <= $lastDayOfMonth; $day++)
                             {
-                                if($day == 21)
+                                if($day == 21 || in_array($day, $status[$i]))
                                 {
                                     echo '<td><input class="habit-input" type="checkbox" id="checkboxId' . $i . $day . '" name="checkbox' . ($i + 1) . '[]" value="' . $day . '" class="custom-radio-margin" onclick="saveCheckboxState(this)" checked disabled></td>';
                                 } else
@@ -84,7 +84,6 @@
                                 }
                             }
                             echo "</tr>";
-                            $i++;
                         }
                     }
                     echo "</tbody></table>";
