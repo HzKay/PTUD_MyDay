@@ -16,9 +16,12 @@
                 echo "<script>alert('Lưu thông tin thất bại')</script>";
             }
             
-            include_once "./view/thoiQuen/vBieuDoTQ.php";
+            header('location: ./?controller=thoiQuen');
         }
-
+        public function viewFormCreate()
+        {
+            require_once './view/thoiQuen/vCreateTQ.php';
+        }
         function index()
         {
             require_once './model/thoiQuen/mThoiQuen.php';

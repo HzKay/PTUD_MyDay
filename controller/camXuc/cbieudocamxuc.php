@@ -66,7 +66,7 @@ class controlbieudocamxuc{
             $emotionValues[] = $row['giaTri'];
         }
 
-        $numberOfDays = $thang;
+        $numberOfDays = date('t');
         $recentEmotionValues = array_slice($emotionValues, -$numberOfDays);
         $emotionMapping = array(
             'vui' => 4,

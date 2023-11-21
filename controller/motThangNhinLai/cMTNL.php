@@ -57,7 +57,7 @@
             if($status == 1)
             {
                 echo "<script>alert('Lưu nội dung thành công')</script>";
-                header('location: ./index.php?controller=motThangNhinLai');
+                header('location: ./index.php?controller=mucTieuThang&action=create');
             } else
             {
                 echo "<script>alert('Lỗi, Không thể lưu nội dung')</script>";

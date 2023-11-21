@@ -105,7 +105,10 @@ switch ($controller)
         switch ($action)
             {
                 case 'create':
-                    echo "Tạo nè";
+                    $cMucTieuThang->vCreateForm();
+                    break;
+                case 'save':
+                    $cMucTieuThang->handleRequest();
                     break;
                 case 'index':
                     $cMucTieuThang->index($maND);
