@@ -182,8 +182,14 @@ switch ($controller)
             break;
             case 'save':
                 $cThoiQuen->saveThoiQuen();
-            }
             break;
+            case 'check':
+                $cThoiQuen->vCheckHabit();
+            break;
+            case 'insert':
+                $cThoiQuen->insertStatusHabit();
+            break;
+        }
         break;
     default:
         $cIndex->vIndex();

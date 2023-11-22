@@ -11,7 +11,7 @@
             <div style="line-height: 30px; margin-top: 20px;">
                 <div style="margin-top: 10px;">
                     <div style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
-                        <form action="" method="get" class="w-50" id="myForm">
+                        <form action="" method="get" class="w-100" id="myForm">
                             <input type="text" name="controller" value="thoiQuen" hidden id="">
                             <input type="text" name="action" value="save" hidden id="">
                             <div id="initialInput" class="form-row text-start">
@@ -29,7 +29,8 @@
                                 </div> 
                             <div class="form-btn mt-3">
                                 <button type="button" class="btn btn-light border me-3" onclick="addInput()">Thêm thói quen</button>
-                                <input type="submit" class="btn btn-light border" value="Gửi"> <br>
+                                <button type="submit" class="btn btn-light border">Gửi</button>
+                                <!-- <input type="submit" class="btn btn-light border" value="Gửi"> <br> -->
                             </div>
                         </form>
 

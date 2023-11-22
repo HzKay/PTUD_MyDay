@@ -24,6 +24,16 @@
             require_once './view/thoiQuen/vCreateTQ.php';
         }
 
+        public function vCheckHabit()
+        {
+            $maND = $_SESSION['userID'];
+            require_once './model/thoiQuen/mThoiQuen.php';
+            $mThoiQuen = new mThoiQuen();
+            $habitList = $mThoiQuen->getTq($maND);
+
+            require_once './view/thoiQuen/vDanhGiaTQ.php';
+        }
+
         function index()
         {
             require_once './model/thoiQuen/mThoiQuen.php';
@@ -40,7 +50,6 @@
             while ($thoiQuen = mysqli_fetch_array($xem))
             {
                 $habitList[] = $thoiQuen['noiDung'];
-                // $array[] = $thoiQuen['noiDung'];
             }
             
             foreach($habitList as $habit) {
@@ -59,6 +68,25 @@
                     $arr[] = $trangThai['trangThai'];
                 }
             return $arr;
+        }
+
+        public function insertStatusHabit()
+        {
+            $maND = $_SESSION['userID'];
+            $id = $_REQUEST['today'];
+            $today = date('d');
+            $noiDung = $_REQUEST['noiDung'];
+            
+            require_once './model/thoiQuen/mThoiQuen.php';
+            $mThoiQuen = new mThoiQuen();
+            $result = $mThoiQuen->insertStatusHabit($noiDung, $id, $maND);
+
+            if($result == 1)
+            {
+                header('location: ./?controller=viecQuanTrong&action=create');
+            } else {
+                header('location: ./?controller=thoiQuen&action=check');
+            }
         }
     }
 ?>

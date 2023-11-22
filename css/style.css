@@ -119,27 +119,7 @@
     height: 478px!important;
 }
 
+
 /* Tạo cong Viec */
-form {
-    max-width: 400px;
-    margin: 20px auto;
-}
 
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input,
-textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-}
-
-input[type="submit"] {
-    cursor: pointer;
-}input[type="reset"] {
-    cursor: pointer;
-}
 

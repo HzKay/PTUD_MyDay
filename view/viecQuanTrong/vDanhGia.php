@@ -7,7 +7,7 @@ class viewdanhgia{
         include_once './view/navbar/vNavbar.php';
         $yesterday = date("Y-m-d");
 
-        echo "<div class='mt-4 text-center'><h2>Đánh giá công việc hôm nay</h2>";
+        echo "<div class='mt-4 text-center mx-auto'><h2>Đánh giá công việc hôm nay</h2>";
         date_default_timezone_set ("Asia/Ho_Chi_Minh");
         echo  "<strong class=''>Ngày: </strong>".date ("d/m/Y", strtotime($yesterday)). "<br><br>";  
         echo "<div style='border:1px solid black; padding:10px; width:50%; margin:0 auto; display:flex; flex-direction:column; align-items:center;'>";
@@ -20,7 +20,7 @@ class viewdanhgia{
             $status = '';
             if($tbldanhgia->num_rows > 0){
                 while ($row = $tbldanhgia->fetch_assoc()) {
-                    $ghiChu = $ghiChu . $row['ghichu'];
+                    $ghiChu = $ghiChu;
                     $time = date("Y-m-d", strtotime($row["thoiGianTH"]));
                     $hourToDo = date('H:i', strtotime($row["thoiGianTH"]));
                     if($time == $yesterday) {
@@ -46,7 +46,8 @@ class viewdanhgia{
         echo "</div>";
         echo "<h4 class='mt-4'><strong>Ghi chú</strong></h4>";
         echo "<input type='text' value='{$ghiChu}' '' {$status} name='ghichu' class='p-3' style='width:50%;height:80px; margin:0 auto; display:table;'>";
-        echo "<br><input type='submit' class='btn btn-light border' name='submit' value='Lưu'>";
+        // echo "<br><input type='submit'  value='Lưu'>";
+        echo "<br><button type='submit' class='btn btn-light border' name='submit'>Lưu</button>";
         echo "</form></div>";
     }
 }

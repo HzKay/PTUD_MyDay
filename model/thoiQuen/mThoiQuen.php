@@ -10,6 +10,23 @@ class mThoiQuen {
         return $result;
     }
 
+    public function insertStatusHabit($dsNoiDung, $id, $maND)
+    {
+        $conn = new connectDB();
+        $today = date('d');
+        foreach ($id as $item)
+        {
+            // echo $dsNoiDung[1];
+            $sql = "INSERT INTO thoiQuen (noiDung, trangThai, maND) 
+            VALUES 
+            ('{$dsNoiDung[$item]}', '$today','{$maND}')";
+            $result = mysqli_query($conn->connect(), $sql);
+        }
+
+        $conn->closeConnect($conn->connect());
+        return $result;
+    }
+
     function getStatusTq($noiDung, $thang, $nam, $maND){
         $conn = new connectDB();
         $sql = "SELECT trangThai FROM `thoiQuen` WHERE `noiDung` = N'{$noiDung}' AND YEAR(`thangNam`) = '{$nam}' AND MONTH(`thangNam`) = '{$thang}' AND `maND` = {$maND}";

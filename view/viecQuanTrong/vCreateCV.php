@@ -1,12 +1,34 @@
 <?php
     define('PAGETITLE', 'Tạo Công Việc');
     include_once './view/navbar/vHeader.php';
+?>
+<style>
+    
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}input[type="reset"] {
+    cursor: pointer;
+}
+</style>    
+<?php
     include_once './view/navbar/vNavbar.php';
 ?>
     <h2 style="text-align: center;" class="mt-3">Tạo Công Việc</h2>
     <!-- <label for="time">Ngày</label>
     <input type=""> -->
-    <form action="./" method="get" class="text-center">
+    <form action="./" method="get" class="text-center" style="margin: 20px auto; max-width: 400px">
         <input type="text" name="controller" value="viecQuanTrong" hidden id="">
         <input type="text" name="action" value="save" hidden id="">
         <table>
