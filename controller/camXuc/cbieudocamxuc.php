@@ -20,7 +20,7 @@ class controlbieudocamxuc{
         }
         
         $mCamXuc = new modelbieudocamxuc();
-        $table = $mCamXuc->getAllCTVan($nhom);
+        $table = $mCamXuc->getAllIDCTVan($nhom);
         
         $rows = [];
         while($row = mysqli_fetch_array($table)){
@@ -42,25 +42,46 @@ class controlbieudocamxuc{
     function checkAdvice($thang, $nam, $maND){
         $mCamXuc = new modelbieudocamxuc();
         $table = $mCamXuc->checkAdvice($thang, $nam, $maND);
-        $row = mysqli_fetch_array($table);
-        return $row['maCTV'];
+        $numRow = mysqli_num_rows($table);
+        
+        if($numRow > 0)
+        {
+            $row = mysqli_fetch_array($table);
+            return $row['maCTV'];
+        }
+        
+        return 0;
     }
 
     function saveAdviceOfUser($maCTV, $maND){
         $mCamXuc = new modelbieudocamxuc();
-        $table = $mCamXuc->saveAdvice($maCTV, $maND);
-        $row = mysqli_fetch_array($table);
+        $result = $mCamXuc->saveAdvice($maCTV, $maND);
         
-        return $row;
+        return $result;
+    }
+
+    function getAllMonthForSelect($maND)
+    {
+        $mCamXuc = new modelbieudocamxuc();
+        $dsThang = $mCamXuc->getAllMonth($maND);
+        $option = [];
+
+        while($item = mysqli_fetch_array($dsThang))
+        {
+            $option[] = $item['thoiGian'];
+        }
+
+        return $option;
     }
 
     function veBieuDoCamXuc($maND)
     {
-        $thang = date('m');
-        $nam = date('Y');
+        $thang = isset($_REQUEST['month']) ? $_REQUEST['month'] : date('m');
+        $nam = isset($_REQUEST['year']) ? $_REQUEST['year'] : date('Y');
+        $time = date("mY", strtotime("$nam-$thang-01"));
         $mCamXuc = new modelbieudocamxuc();
         $camXucThang = $mCamXuc->getCamXucOfMonth($maND, $thang, $nam);
-        
+        $option = $this->getAllMonthForSelect($maND);
         $emotionValues = [];
         while ($row = mysqli_fetch_array($camXucThang)) {
             $emotionValues[] = $row['giaTri'];
@@ -92,7 +113,6 @@ class controlbieudocamxuc{
         } else {
             $emotionLevelsJson = '[]'; // Nếu không có dữ liệu cảm xúc, truyền một mảng rỗng
         }
-
         include'./view/camXuc/chart.php';
     }
 

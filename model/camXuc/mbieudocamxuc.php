@@ -11,11 +11,22 @@ class modelbieudocamxuc extends connectDB {
         return $table;
     }
 
-    function getAllCTVan($nhom)
+    function getAllIDCTVan($nhom)
     {
         $conn = $this->connect();
-        $query = "SELECT * FROM cauTuVan WHERE nhom = {$nhom}";
+        $query = "SELECT maCTV FROM cauTuVan WHERE nhom = {$nhom}";
         
+        $table = mysqli_query($conn, $query);
+       
+        return $table;
+    }
+
+    function getAllMonth($maND)
+    {
+        $conn = $this->connect();
+        $query = "SELECT DISTINCT DATE_FORMAT(thoiGian, '%Y-%m') as thoiGian from `camXuc` 
+            WHERE maND = '{$maND}'
+            ORDER BY thoiGian DESC";
         $table = mysqli_query($conn, $query);
        
         return $table;
@@ -35,18 +46,17 @@ class modelbieudocamxuc extends connectDB {
     {
         $conn = $this->connect();
         $query = "INSERT INTO nguoiDung_CauTuVan (`maND`, `maCTV`) VALUES ('{$maND}', '{$maCTV}')";
-        $table = mysqli_query($conn, $query);
+        $result = $this->excuteQuery($query);
        
-        return $table;
+        return $result;
     }
 
     function checkAdvice($thang, $nam, $maND)
     {
         $conn = $this->connect();
         $query = "SELECT maCTV FROM nguoiDung_CauTuVan WHERE MONTH(`thangNam`) = '{$thang}' AND YEAR(`thangNam`) = '{$nam}' AND `maND` = '{$maND}'";
-
         $table = mysqli_query($conn, $query);
-       
+
         return $table;
     }
 
@@ -54,7 +64,6 @@ class modelbieudocamxuc extends connectDB {
     {
         $conn = $this->connect();
         $query = "SELECT giaTri FROM camXuc WHERE maND = {$maND} AND MONTH(thoiGian) = {$month} AND YEAR(thoiGian) = {$year}";
-    
         $table = mysqli_query($conn, $query);
        
         return $table;

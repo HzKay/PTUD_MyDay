@@ -94,7 +94,6 @@ if (isset($_REQUEST["submit"]) && $_REQUEST["action"] != 'index') {
     $selectedMaCVs = array_slice($trang, 0,6); // Select up to 6 maCVs
     $kq = false; // Initialize $kq here
 
-    // var_dump($ma);
     foreach ($selectedMaCVs as $maCV) {
       $trangthai = in_array($maCV, $trang) ? 1 : 0;
       $kq = $p->luu($trangthai, $ghi, $maCV, $maND);

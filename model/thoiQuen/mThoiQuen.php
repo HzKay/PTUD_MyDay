@@ -2,9 +2,9 @@
 include_once "./model/connect.php";
 
 class mThoiQuen {
-    function getTq($maND){
+    function getTq($maND, $time){
         $conn = new connectDB();
-        $sql = "SELECT DISTINCT noiDung FROM `thoiQuen` WHERE `maND` = {$maND} AND DATE_FORMAT(`thangNam`, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')";
+        $sql = "SELECT DISTINCT noiDung FROM `thoiQuen` WHERE `maND` = {$maND} AND DATE_FORMAT(`thangNam`, '%m-%Y') = DATE_FORMAT('{$time}', '%m-%Y')";
         $result = mysqli_query($conn->connect(), $sql);
         $conn->closeConnect($conn->connect());
         return $result;
@@ -24,6 +24,16 @@ class mThoiQuen {
         }
 
         $conn->closeConnect($conn->connect());
+        return $result;
+    }
+
+    public function getTimeOptions($maND)
+    {
+        $conn = new connectDB();
+        $sql = "SELECT DISTINCT DATE_FORMAT(`thangNam`, '%Y-%m') as thangNam FROM `thoiQuen` WHERE `maND` = {$maND}";
+        $result = mysqli_query($conn->connect(), $sql);
+        $conn->closeConnect($conn->connect());
+
         return $result;
     }
 

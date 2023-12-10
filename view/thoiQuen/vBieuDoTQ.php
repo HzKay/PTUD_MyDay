@@ -48,14 +48,40 @@
     include_once './view/navbar/vNavbar.php';
 ?>
 <div class="habit-box mx-auto">
-    <div class="mt-5 mb-3 text-center">
-        <h3 class="mb-5 fw-bold">Những thói quen tôi muốn có</h3>
+    <div class="row mt-5 mb-3 text-center">
+        <h3 class="col-8 text-end fw-bold">Những thói quen tôi muốn có</h3>
+        <form action="" method="post" class="col-4 d-flex justify-content-center">
+            <select name="timeSelect" id="timeSelect" class="form-select" style="max-width: 160px;">
+                <option value="0">Chọn thời gian</option>
+                <?php
+                    while($option = mysqli_fetch_array($optionList))
+                    {
+                        if($timeSelect == $option['thangNam'])
+                        {
+                            echo "
+                                <option value='{$option['thangNam']}-01' selected>
+                                {$option['thangNam']}
+                                </option>
+                            ";
+                        }
+                        else
+                        {
+                            echo "
+                                <option value='{$option['thangNam']}-01'>
+                                {$option['thangNam']}
+                                </option>
+                            ";
+                        }
+                    }
+                ?> 
+            </select>
+        </form>
     </div>
     <div class="row">
         <!-- Bên trái -->
         <div class="col-12">
             <?php
-                if ($xem) {
+                if ($isHabit > 0) {
                     $dem = 0;
                     echo "<table class='table'>
                     <thead>";
@@ -87,12 +113,23 @@
                         }
                     }
                     echo "</tbody></table>";
+                } else {
+                    echo "<h4 class='text-center'>Không có dữ liệu thói quen</h4>";
                 }
             ?>
         </div>
     </div>
 </div>  
         <script>
+        var timeSelect = document.getElementById("timeSelect");
+        timeSelect.addEventListener('change', function (){
+            let selectedValue = timeSelect.value;
+            if(selectedValue != 0)
+            {
+                let link = './?controller=thoiQuen&thoiGian=' + selectedValue;
+                window.location.href = link;
+            }
+        })
         document.addEventListener("DOMContentLoaded", function () {
             // Hàm để lưu trạng thái của checkbox vào localStorage
             function saveCheckboxState(checkbox) {

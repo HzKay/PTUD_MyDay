@@ -5,7 +5,28 @@ include_once './view/navbar/vNavbar.php';
 ?>
 <div class="d-flex justify-content-center flex-column text-center">
 <h3 style="text-align: center;" class="mt-4 mb-2">Biểu đồ cảm xúc của tôi</h3>
-<?php echo  "<p><strong>Ngày: </strong>".date ("d/m/Y"). "</p><br>";  ?>
+<div class="d-flex align-items-center justify-content-center mb-3">
+    <p class="fw-bold mb-0 me-3">Tháng: </p>
+    <form action="" style="width:120px" class=" d-flex" method="post">                
+        <?php
+            echo "<select id='time' class='form-select' name='time'>";
+            foreach ($option as $item)
+            {
+                $value = date('mY', strtotime($item));
+                $month = date('m/Y', strtotime($item));
+
+                if($time == $value)
+                {
+                    echo "<option value='{$value}' selected>{$month}</option>";
+                } else
+                {
+                    echo "<option value='{$value}'>{$month}</option>";
+                }
+            }
+            echo '</select>';
+        ?>
+    </form>
+</div>
 <!-- Hiển thị nơi vẽ biểu đồ -->
 <div class="box w-75 h-100 mx-auto">
 
@@ -48,6 +69,17 @@ var chart = new Chart(ctx, {
             }
         }
     }
+});
+
+var thangNam = document.getElementById("time");
+
+thangNam.addEventListener("change", function() {    
+    var selectedValue = thangNam.value;
+    let thang = selectedValue.slice(0, 2);
+    let nam = selectedValue.slice(2);
+    let link = './?controller=camXuc&action=index&month=' + thang + '&year=' + nam;
+    window.location.href = link;
+    console.log(selectedValue); 
 });
 </script>
 

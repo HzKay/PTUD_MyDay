@@ -39,22 +39,30 @@
             require_once './model/thoiQuen/mThoiQuen.php';
             $mThoiQuen = new mThoiQuen();
             $maND = $_SESSION['userID']; 
-            $xem = $mThoiQuen->getTq($maND);
-            $lastDayOfMonth = date('t');
-            $thang = date('m');
-            $nam = date('Y');
-            $numHabit = mysqli_num_rows($xem);
+            $time = $_REQUEST['thoiGian'] ?? date('Y-m-d');
+            $timeSelect = date('Y-m', strtotime($time));
+            $xem = $mThoiQuen->getTq($maND, $time);
+            $optionList = $mThoiQuen->getTimeOptions($maND);
+            $isHabit = mysqli_num_rows($xem);
 
-            $habitList = [];
-            $status= [];
-            while ($thoiQuen = mysqli_fetch_array($xem))
+            if($isHabit > 0)
             {
-                $habitList[] = $thoiQuen['noiDung'];
-            }
-            
-            foreach($habitList as $habit) {
-                $temp = $mThoiQuen->getStatusTq($habit, $thang, $nam, $maND);
-                $status[] =  $this->convertToArray($temp);// $this->convertToArray()
+                $lastDayOfMonth = date('t');
+                $thang = date('m');
+                $nam = date('Y');
+                $numHabit = mysqli_num_rows($xem);
+    
+                $habitList = [];
+                $status= [];
+                while ($thoiQuen = mysqli_fetch_array($xem))
+                {
+                    $habitList[] = $thoiQuen['noiDung'];
+                }
+                
+                foreach($habitList as $habit) {
+                    $temp = $mThoiQuen->getStatusTq($habit, $thang, $nam, $maND);
+                    $status[] =  $this->convertToArray($temp);// $this->convertToArray()
+                }    
             }
             
             include "./view/thoiQuen/vBieuDoTQ.php";
