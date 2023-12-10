@@ -10,7 +10,7 @@
             </div>
             <form action="./" method="get" class="w-50 mx-auto">
                 <input type="text" name="controller" value="thoiQuen" hidden id="">
-                <input type="text" name="action" value="insert" hidden id="">
+                <input type="text" name="action" value="insert" hidden id="" >
                 <?php
                 $id = 0;
                     while($habit = mysqli_fetch_array($habitList))
@@ -21,7 +21,7 @@
                                 <input type='checkbox' class=' w-50 h-50' name='today[]' value='{$id}' id='thoiQuen1'>
                             </div>
                             <div class='col-9'>
-                                <input type='text' class='border-0 form-control color-dark' name='noiDung[]' value='{$habit['noiDung']}' >
+                                <input type='text' disabled class='bg-transparent border-0 form-control color-dark' name='noiDung[]' value='{$habit['noiDung']}' >
                             </div>
                         </div>";
                         $id++;

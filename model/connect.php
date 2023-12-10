@@ -1,7 +1,7 @@
 <?php
  class connectDB 
  {
-    private $servername = "localhost";
+    private $servername = "82.180.152.153";
     private $database = "u420857906_So_MyDay";
     private $username = "u420857906_admin";
     private $password = "taikhoAnMyD4y@gmail.%$";

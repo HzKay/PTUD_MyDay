@@ -79,7 +79,6 @@ thangNam.addEventListener("change", function() {
     let nam = selectedValue.slice(2);
     let link = './?controller=camXuc&action=index&month=' + thang + '&year=' + nam;
     window.location.href = link;
-    console.log(selectedValue); 
 });
 </script>
 

@@ -27,9 +27,10 @@
         public function vCheckHabit()
         {
             $maND = $_SESSION['userID'];
+            $time =  date('Y-m-d');
             require_once './model/thoiQuen/mThoiQuen.php';
             $mThoiQuen = new mThoiQuen();
-            $habitList = $mThoiQuen->getTq($maND);
+            $habitList = $mThoiQuen->getTq($maND, $time);
 
             require_once './view/thoiQuen/vDanhGiaTQ.php';
         }
@@ -48,8 +49,6 @@
             if($isHabit > 0)
             {
                 $lastDayOfMonth = date('t');
-                $thang = date('m');
-                $nam = date('Y');
                 $numHabit = mysqli_num_rows($xem);
     
                 $habitList = [];
@@ -60,7 +59,7 @@
                 }
                 
                 foreach($habitList as $habit) {
-                    $temp = $mThoiQuen->getStatusTq($habit, $thang, $nam, $maND);
+                    $temp = $mThoiQuen->getStatusTq($habit, $time, $maND);
                     $status[] =  $this->convertToArray($temp);// $this->convertToArray()
                 }    
             }

@@ -37,9 +37,9 @@ class mThoiQuen {
         return $result;
     }
 
-    function getStatusTq($noiDung, $thang, $nam, $maND){
+    function getStatusTq($noiDung, $time, $maND){
         $conn = new connectDB();
-        $sql = "SELECT trangThai FROM `thoiQuen` WHERE `noiDung` = N'{$noiDung}' AND YEAR(`thangNam`) = '{$nam}' AND MONTH(`thangNam`) = '{$thang}' AND `maND` = {$maND}";
+        $sql = "SELECT trangThai FROM `thoiQuen` WHERE `noiDung` = N'{$noiDung}' AND DATE_FORMAT(`thangNam`, '%m-%Y') = DATE_FORMAT('{$time}', '%m-%Y') AND `maND` = {$maND}";
         $result = mysqli_query($conn->connect(), $sql);
         $conn->closeConnect($conn->connect());
         return $result;

@@ -130,31 +130,6 @@
                 window.location.href = link;
             }
         })
-        document.addEventListener("DOMContentLoaded", function () {
-            // Hàm để lưu trạng thái của checkbox vào localStorage
-            function saveCheckboxState(checkbox) {
-                localStorage.setItem(checkbox.id, checkbox.checked);
-            }
-
-            // Lắng nghe sự kiện click của checkbox
-            document.addEventListener("click", function (event) {
-                if (event.target.type === "checkbox") {
-                    saveCheckboxState(event.target);
-                }
-            });
-
-            // Khôi phục trạng thái checkbox từ localStorage
-            for (let i = 0; i < 8; i++) {
-                for (let j = 1; j <= 31; j++) {
-                    const checkbox = document.getElementById('checkboxId' + i + j);
-                    const isChecked = localStorage.getItem(checkbox.id);
-
-                    if (isChecked === 'true') {
-                        checkbox.checked = true;
-                    }
-                }
-            }
-        });
     </script>
     </div> 
 <?php 
