@@ -49,7 +49,9 @@
             $than = $_POST['than'];
             $tam = $_POST['tam'];
             $tri = $_POST['tri'];
-        
+            $today = strtotime(date('Y-m-d'));
+            $time = date('Y-m-d', strtotime('-1 month', $today));
+
             require './model/motThangNL/mMTNL.php';
             $mMotThangNL = new mMTNL();
             $status = $mMotThangNL->save_MTNL($than, $tam, $tri, $maND);

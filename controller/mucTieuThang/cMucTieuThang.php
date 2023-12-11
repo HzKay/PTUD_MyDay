@@ -5,8 +5,10 @@
         {
             require_once './model/mucTieuThang/mMucTieuThang.php';
             $mMTT = new mMucTieuThang();
-            $result = $mMTT->getMucTieuThang($maND);       
-            
+            $time = $_REQUEST['time'] ?? date('Y-m-d');
+            $timeSelect = date('Y-m', strtotime($time));
+            $result = $mMTT->getMucTieuThang($maND, $time);       
+            $optionList = $mMTT->getOptionList($maND);
             $listMTT = [];
             $chuDeThang = 'Chưa thiết lập';
             while ($chiTietMTT = mysqli_fetch_array($result))

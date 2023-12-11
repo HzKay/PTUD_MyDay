@@ -3,13 +3,25 @@
 
     class mMucTieuThang extends connectDB
     {
-        public function getMucTieuThang($maND)
+        public function getMucTieuThang($maND, $time)
         {
             $conn = $this->connect();
             $query = "SELECT *
             FROM `mucTieuThang` AS m
             LEFT JOIN `chiTietMTT` AS cm ON m.maMTT = cm.maMTT
-            WHERE m.maND = {$maND} ORDER BY m.thangNam DESC, cm.maCTMT LIMIT 3
+            WHERE m.maND = {$maND} 
+            AND DATE_FORMAT(m.thangNam, '%Y-%m') = DATE_FORMAT('{$time}', '%Y-%m') LIMIT 3";
+            $result = mysqli_query($conn, $query);
+            $this->closeConnect($conn);
+            return $result;
+        }
+
+        public function getOptionList($maND)
+        {
+            $conn = $this->connect();
+            $query = "SELECT DISTINCT DATE_FORMAT(thangNam, '%Y-%m') as thangNam
+            FROM `mucTieuThang`
+            WHERE maND = {$maND}
             ";
             $result = mysqli_query($conn, $query);
             $this->closeConnect($conn);
@@ -21,6 +33,7 @@
             $conn = $this->connect();
             $query = "INSERT INTO `mucTieuThang`(`chuDe`, `thangNam`, `maND` ) VALUES ('{$chuDe}', '{$today}', '{$maND}')";
             $res = mysqli_query($conn, $query);
+
             if($res == 1)
             {
                 $querymaMTT = "SELECT maMTT FROM `mucTieuThang` WHERE thangNam = '{$today}' AND maND = {$maND}";

@@ -15,7 +15,7 @@
         <div style="background-color: antiquewhite; width: 100%; height: 60px;">
             <nav class="d-flex justify-content-evenly">
                 <div>
-                    <a href="./?controller=motThangNhinLai&action=create">Nhập cuối tháng</a>
+                    <a href="./?controller=motThangNhinLai&action=create">Nhập đầu tháng</a>
                 </div>
                 <div>
                     <a href="./?controller=viecQuanTrong&action=danhGia">Đánh giá hôm nay</a>

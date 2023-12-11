@@ -8,7 +8,7 @@ include_once './view/navbar/vNavbar.php';
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center mt-3">
             <!-- <form action=""></form> -->
-            <form class="position-relative col-sm-6 d-flex flex-column align-items-center" style="gap: 10px; width: 390px;" action="./?controller=motThangNhinLai&action=save" method="post">
+            <form class="position-relative col-sm-6 d-flex flex-column align-items-center" style="gap: 10px; width: 390px;" action="./?controller=motThangNhinLai&action=save" method="POST">
                 <h3 style="margin-top: 20px;" class="fw-bold">Một tháng nhìn lại</h3>
                 <p style="text-align: center"; >Chúc mừng bạn đã hoàn thành một tháng trọn vẹn. Hãy tự thưởng cho bản thân nhé!!!</p>
                 <label class="fw-bold text-center" for="than">
@@ -23,7 +23,7 @@ include_once './view/navbar/vNavbar.php';
                     Những điều bạn đã làm để phát triển TRÍ tuệ.
                 </label>
                 <input type="text" name="tri" class="form-control border border-dark" id="tri" placeholder="Mời bạn nhập nội dung..." style="height: 60px; width: 340px;max-width: 500px; max-height: 100px;" required></input>
-                <input type="submit" class="btn btn-dark" name="submit" id="submit" value="Lưu" style="margin: 10px 0 0 264px">
+                <input type="submit" class="btn btn-dark" name="submit-MTNL" id="submit" value="Lưu" style="margin: 10px 0 0 264px">
                 
                 <input style="padding-left: 15px; width: 94px; display: block !important;margin-top: 10px; margin-left: 50px;" class="form-control border border-dark position-absolute start-100 top-0" type="text" name="date" id="date" value="<?php echo $today;?>" disabled>
             </form>

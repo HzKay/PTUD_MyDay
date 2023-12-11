@@ -81,7 +81,17 @@ switch ($controller)
         }
         break;
     case "index":
-        $cIndex->vIndex();
+        switch ($action)
+        {
+            case 'index':
+                $cIndex->vIndex();
+                break;
+            case 'change':
+                return $cIndex->changeTime();
+                break;
+            default:
+                $cIndex->vIndex();
+        }
         break;
 
     case "dieuBietOn":

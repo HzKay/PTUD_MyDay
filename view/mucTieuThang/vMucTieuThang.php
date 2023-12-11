@@ -6,7 +6,35 @@
     <div class="mtt-box w-75 mx-auto mt-5">
         <div class="box">
             <div class="chuDeThang text-center mb-5">
-                <h3 class="mt-4 mb-3 fw-bold">Chủ đề tháng <?php echo date('m')?></h3>
+                <div class="mt-4 mb-3 position-relative">
+                    <h3 class="fw-bold me-3">Chủ đề tháng</h3>
+                    <form action="" method="post" class="position-absolute end-0 top-0 d-flex justify-content-center">
+                        <select name="timeSelect" id="timeSelect" class="form-select" style="max-width: 160px;">
+                            <option value="0">Chọn thời gian</option>
+                            <?php
+                                while($option = mysqli_fetch_array($optionList))
+                                {
+                                    if($timeSelect == $option['thangNam'])
+                                    {
+                                        echo "
+                                            <option value='{$option['thangNam']}-01' selected>
+                                            {$option['thangNam']}
+                                            </option>
+                                        ";
+                                    }
+                                    else
+                                    {
+                                        echo "
+                                            <option value='{$option['thangNam']}-01'>
+                                            {$option['thangNam']}
+                                            </option>
+                                        ";
+                                    }
+                                }
+                            ?> 
+                        </select>
+                    </form>
+                </div>
                 <?php echo '<h5 class="mb-4">'.$chuDeThang.'</h5>';?>
             </div>
             <div class="mucTieuThang text-center mt-5">
@@ -24,6 +52,17 @@
             </div>
         </div>
     </div>
+    <script>
+        var timeSelect = document.getElementById('timeSelect');
+        timeSelect.addEventListener('change', function() {
+            let value = timeSelect.value;
+            if(value != 0)
+            {
+                let link = './?controller=mucTieuThang&action=index&time=' + value;
+                window.location.href = link;
+            }
+        })
+    </script>
 <?php
     include_once "./view/navbar/vFooter.php";
 ?>

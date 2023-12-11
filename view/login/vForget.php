@@ -11,7 +11,7 @@
     <script src="js/checkInput.js"></script>
     <title>Quên mật khẩu</title>
 </head>
-<body>
+<body class="vh-100" style="background-color:#f0faff;">
     <div class="w-50 p-5 mx-auto">
         <h2 class="fw-bold text-center mb-4">Quên mật khẩu</h2>
         <form action="" method="post" class="mt-3">
@@ -27,7 +27,7 @@
                 $statusForget = $_SESSION['statusForget'] ?? '';
                 echo "<p class='text-danger mt-4'>".$statusForget."</p>"?>
             <div class="text-center">
-                <button type="submit" class="btn btn-light mt-3">Đặt lại mật khẩu</button>
+                <button type="submit" class="btn btn-primary mt-3">Đặt lại mật khẩu</button>
             </div>
         </form>       
     </div>

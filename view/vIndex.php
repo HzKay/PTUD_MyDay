@@ -34,7 +34,19 @@
         <div class="header-job d-flex align-items-center justify-content-between">
             <h4 class="">Công việc quan trọng</h4>
             <div class="text-right">
-                <p class="fw-bold"><?php echo date('d/m/Y')?></p>
+                <form action="./?controller=index&action=change&time=<?php echo $time?>" method="post" class="d-flex align-items-center justify-content-center">
+                    <input type="submit" class="btn btn-transparent" name="btnPrevJob" id="btnPrevJob" value="<">
+                    <label class="mb-0 fw-bold"><?php echo date('d/m/Y', strtotime($time));?></label>
+                    <?php 
+                        $today = date('Y-m-d');
+                        if ($time == $today)
+                        {
+                            echo "<input type='submit' class='btn btn-transparent' name='btnNextJob' id='btnNextJob' value='>' disabled>";
+                        } else {
+                            echo "<input type='submit' class='btn btn-transparent' name='btnNextJob' id='btnNextJob' value='>'>";
+                        }
+                    ?>
+                </form>
             </div>
         </div>
         <table class="table">
@@ -119,7 +131,6 @@
 
 <script>
     $(document).ready(function() {
-        // Khởi tạo FullCalendar
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev',
@@ -150,6 +161,8 @@
             var link = './?controller=suKien&action=save&txtTitle=' + eventName + '&txtTime=' + eventDate;
             window.location.href = link;
         });
+
+        
     });
 </script>
 <?php
