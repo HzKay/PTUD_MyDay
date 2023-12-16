@@ -21,10 +21,10 @@
             return $result;
         }
 
-        public function save_MTNL($than, $tam, $tri, $maND)
+        public function save_MTNL($than, $tam, $tri, $maND, $time)
         {
             $conn = $this->connect();
-            $query = "INSERT INTO `motThangNhinLai`(`than`, `tam`, `tri`, `maND`) VALUES ('{$than}','{$tam}','{$tri}','{$maND}')";
+            $query = "INSERT INTO `motThangNhinLai`(`than`, `tam`, `tri`, `maND`, `thangNam`) VALUES ('{$than}','{$tam}','{$tri}','{$maND}', '{$time}')";
             $status = $this->excuteQuery($query);
             $this->closeConnect($conn);
             return $status;

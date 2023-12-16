@@ -42,7 +42,7 @@
                         <input type="radio" hidden value="5" name="emotion[]" id="emotion5">
                     </div>
 
-                    <input type="submit" value="Lưu" class="btn btn-light w-25 mx-auto mt-5"> 
+                    <input type="submit" value="Lưu" class="btn btn-primary w-25 mx-auto mt-5"> 
             </div>
         </div>
     </div>  

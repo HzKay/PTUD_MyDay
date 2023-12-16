@@ -32,7 +32,13 @@
             $mThoiQuen = new mThoiQuen();
             $habitList = $mThoiQuen->getTq($maND, $time);
 
-            require_once './view/thoiQuen/vDanhGiaTQ.php';
+            if(mysqli_num_rows($habitList) > 0)
+            {
+                require_once './view/thoiQuen/vDanhGiaTQ.php';
+            } else 
+            {
+                header('location: ./?controller=viecQuanTrong&action=create');
+            }
         }
 
         function index()

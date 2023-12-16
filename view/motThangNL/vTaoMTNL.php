@@ -30,43 +30,37 @@ include_once './view/navbar/vNavbar.php';
         </div>
     </div>
 </main>
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script src="./js/jquery.animateNumber.min.js"></script>
+    <script src="./js/jquery.min.js"></script>';
+    <script>
+        const than = document.getElementById("than")
+        const tam = document.getElementById("tam")
+        const tri = document.getElementById("tri")
+        const submit = document.getElementById("submit")
+        function isFirstDayOfMonth(date) {
+            const today = new Date(date);
+            // nextDay.setDate(date.getDate() + 1);
+            const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1); //lấy ngày 1 của tháng trong năm
+            return today.getDate() === 1;
+        }
 
+
+            const inputDate = new Date(); // Điều này tạo ra một đối tượng Date hiện tại.
+            const isFirstDay = isFirstDayOfMonth(inputDate);
+
+            if (!isFirstDay) {
+                than.setAttribute("disabled","disabled")
+                tam.setAttribute("disabled","disabled")
+                tri.setAttribute("disabled","disabled")
+                submit.setAttribute("disabled","disabled")
+
+            } else {
+                than.removeAttribute("disabled")
+                tam.removeAttribute("disabled")
+                tri.removeAttribute("disabled")
+            }
+    </script>
 <?php
-echo '
-<script src="./js/jquery-3.6.1.min.js"></script>
-<script src="./js/jquery.animateNumber.min.js"></script>
-<script src="./js/jquery.min.js"></script>';
-
-echo `
-<script>
-const than = document.getElementById("than")
-const tam = document.getElementById("tam")
-const tri = document.getElementById("tri")
-const submit = document.getElementById("submit")
-    function isLastDayOfMonth(date) {
-        const nextDay = new Date(date);
-        nextDay.setDate(date.getDate() + 1);
-        return nextDay.getDate() === 1;
-        }
-
-        const inputDate = new Date(); // Điều này tạo ra một đối tượng Date hiện tại.
-        const isLastDay = isLastDayOfMonth(inputDate);
-
-        if (!isLastDay) {
-            than.setAttribute("disabled","disabled")
-            tam.setAttribute("disabled","disabled")
-            tri.setAttribute("disabled","disabled")
-            submit.setAttribute("disabled","disabled")
-
-        } else {
-            than.removeAttribute("disabled")
-            tam.removeAttribute("disabled")
-            tri.removeAttribute("disabled")
-        }
-
-
-</script>
-`;
-
 include_once './view/navbar/vFooter.php';
 ?>

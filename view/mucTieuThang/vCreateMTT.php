@@ -71,7 +71,7 @@
                         <input type="text" name="ctmt3" class="form-control idip" id="ctmt3" placeholder="Nhập mục tiêu thứ 3..." required></input>
                         
                         <div>
-                            <input type="submit" class="btn mb-3 btn-light save" name="submitMTT" id="submit" value="Lưu">
+                            <input type="submit" class="btn mb-3 btn-primary save" name="submitMTT" id="submit" value="Lưu">
                         </div>
                     </div>
                     <div class="erro-noti position-relative">
@@ -85,12 +85,12 @@
     <script src="./js/jquery-3.6.1.min.js"></script>
     <script src="./js/jquery.animateNumber.min.js"></script>
     <script src="./js/jquery.min.js"></script>
-    <script>
+    <!-- <script>
         const text1 = document.getElementById("text1")
         const ctmt1 = document.getElementById("ctmt1")
         const ctmt2 = document.getElementById("ctmt2")
         const ctmt3 = document.getElementById("ctmt3")
-        const check = document.getElementById("check")
+        const check = document.getElementById("submit")
 
 
         const submit = document.getElementById("submit")
@@ -100,7 +100,6 @@
             // nextDay.setDate(date.getDate() + 1);
             const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1); //lấy ngày 1 của tháng trong năm
             return today.getDate() === 1;
-
         }
 
         const inputDate = new Date(); // Điều này tạo ra một đối tượng Date hiện tại.
@@ -108,27 +107,27 @@
 
 
 
-        // document.getElementById('text1').disabled = !isFirstDay;
-        // document.getElementById('ctmt1').disabled = !isFirstDay;
-        // document.getElementById('ctmt2').disabled = !isFirstDay;
-        // document.getElementById('ctmt3').disabled = !isFirstDay;
+        document.getElementById('text1').disabled = !isFirstDay;
+        document.getElementById('ctmt1').disabled = !isFirstDay;
+        document.getElementById('ctmt2').disabled = !isFirstDay;
+        document.getElementById('ctmt3').disabled = !isFirstDay;
 
         if (!isFirstDay) {
-            //     text1.setAttribute("disabled","disabled")
-            //     ctmt1.setAttribute("disabled","disabled")
-            //     ctmt2.setAttribute("disabled","disabled")
-            //     ctmt3.setAttribute("disabled","disabled")
-            //     check.setAttribute("disabled","disabled")
+                text1.setAttribute("disabled","disabled")
+                ctmt1.setAttribute("disabled","disabled")
+                ctmt2.setAttribute("disabled","disabled")
+                ctmt3.setAttribute("disabled","disabled")
+                check.setAttribute("disabled","disabled")
 
 
-            //     submit.setAttribute("disabled","disabled")
+                submit.setAttribute("disabled","disabled")
 
-            // } else {
-            //     text1.removeAttribute("disabled")
-            //     ctmt1.removeAttribute("disabled")
-            //     ctmt2.removeAttribute("disabled")
-            //     ctmt3.removeAttribute("disabled")
-            //     check.removeAttribute("disabled")
+            } else {
+                text1.removeAttribute("disabled")
+                ctmt1.removeAttribute("disabled")
+                ctmt2.removeAttribute("disabled")
+                ctmt3.removeAttribute("disabled")
+                check.removeAttribute("disabled")
 
         }
 
@@ -164,7 +163,7 @@
                 return false;
             }
         }
-    </script>
+    </script> -->
 
 <?php
     include_once './view/navbar/vFooter.php';

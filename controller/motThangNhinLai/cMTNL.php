@@ -54,7 +54,7 @@
 
             require './model/motThangNL/mMTNL.php';
             $mMotThangNL = new mMTNL();
-            $status = $mMotThangNL->save_MTNL($than, $tam, $tri, $maND);
+            $status = $mMotThangNL->save_MTNL($than, $tam, $tri, $maND, $time);
 
             if($status == 1)
             {

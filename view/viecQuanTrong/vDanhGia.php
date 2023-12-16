@@ -16,6 +16,7 @@ class viewdanhgia{
         $p = new controldanhgia();
         $tbldanhgia = $p->getAlldanhgia($yesterday);
         $ghiChu = '';
+        $button = "Lưu";
         if($tbldanhgia){
             $status = '';
             if($tbldanhgia->num_rows > 0){
@@ -38,6 +39,7 @@ class viewdanhgia{
             }else{
                 echo "Không có công việc";
                 $status = 'disabled';
+                $button = 'Tiếp tục';
             }
         }else{
             echo "Error";
@@ -46,8 +48,8 @@ class viewdanhgia{
         echo "</div>";
         echo "<h4 class='mt-4'><strong>Ghi chú</strong></h4>";
         echo "<input type='text' value='{$ghiChu}' '' {$status} name='ghichu' class='p-3' style='width:50%;height:80px; margin:0 auto; display:table;'>";
-        // echo "<br><input type='submit'  value='Lưu'>";
-        echo "<br><button type='submit' class='btn btn-light border' name='submit'>Lưu</button>";
+
+        echo "<br><button type='submit' class='btn btn-primary border' name='submit'>{$button}</button>";
         echo "</form></div>";
     }
 }

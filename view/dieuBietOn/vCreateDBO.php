@@ -8,7 +8,7 @@
     <input type="text" name="action" value="save" id="" hidden>
     <h3 class="fw-bold mt-3 mb-5">Nhập điều biết ơn</h3>
     <input type="text" name="txtDieuBietOn" placeholder="Nội dung điều biết ơn" class="p-4" required>
-    <input type="submit" class="btn btn-light mt-5 w-25 mx-auto" value="Lưu">
+    <input type="submit" class="btn btn-primary mt-5 w-25 mx-auto" value="Lưu">
 </form>
 
 <?php

@@ -21,7 +21,7 @@
                                 <input type='checkbox' class=' w-50 h-50' name='today[]' value='{$id}' id='thoiQuen1'>
                             </div>
                             <div class='col-9'>
-                                <input type='text' disabled class='bg-transparent border-0 form-control color-dark' name='noiDung[]' value='{$habit['noiDung']}' >
+                                <input type='text' readonly class='bg-transparent border-0 form-control color-dark' name='noiDung[]' value='{$habit['noiDung']}' >
                             </div>
                         </div>";
                         $id++;

@@ -2,7 +2,7 @@
     define("PAGETITLE", 'Điều biết ơn');
     include_once './view/navbar/vHeader.php';
     include_once './view/navbar/vNavbar.php';
-    $now = isset($_GET['time']) ? $_GET['time'] : date('mY');
+    $now = isset($_REQUEST['time']) ? $_REQUEST['time'] : date('mY');
  ?>   
 
 <div class="box">

@@ -10,7 +10,7 @@
             FROM `mucTieuThang` AS m
             LEFT JOIN `chiTietMTT` AS cm ON m.maMTT = cm.maMTT
             WHERE m.maND = {$maND} 
-            AND DATE_FORMAT(m.thangNam, '%Y-%m') = DATE_FORMAT('{$time}', '%Y-%m') LIMIT 3";
+            AND DATE_FORMAT(m.thangNam, '%Y-%m') = DATE_FORMAT('{$time}', '%Y-%m') ORDER BY cm.thangNam DESC LIMIT 3";
             $result = mysqli_query($conn, $query);
             $this->closeConnect($conn);
             return $result;
@@ -31,7 +31,10 @@
         public function saveData ($chuDe, $noiDung1, $noiDung2, $noiDung3, $maND) {
             $today = date('Y-m-d');
             $conn = $this->connect();
-            $query = "INSERT INTO `mucTieuThang`(`chuDe`, `thangNam`, `maND` ) VALUES ('{$chuDe}', '{$today}', '{$maND}')";
+            $query = "INSERT INTO `mucTieuThang`(`chuDe`, `thangNam`, `maND` ) 
+                        VALUES ('{$chuDe}', '{$today}', '{$maND}')
+                        ON DUPLICATE KEY
+                        UPDATE `chuDe` = '{$chuDe}'";
             $res = mysqli_query($conn, $query);
 
             if($res == 1)
