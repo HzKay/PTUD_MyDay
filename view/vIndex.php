@@ -108,13 +108,17 @@
             <div class="modal-body">
                 <form action="./?controller=suKien&action=save" name="addEvent" method="get">
                     <label for="txtTitle" class="form-label">Tên sự kiện</label>
-                    <input type="text" name="txtTitle" id="txtTitle" class="form-control">
+                    <input type="text" name="txtTitle" id="txtTitle" class="form-control" required>
 
                     <label for="txtTime">Thời gian</label>
-                    <input type="date" name="txtTime" id=txtTime class="form-control">
+                    <input type="date" name="txtTime" id=txtTime class="form-control" required>
         
                     <div class="text-center mt-3">
-                        <button type="submit" class="btn border btn-light" name="btnSave" id="btnSave" data-dismiss="modal">Lưu</button>
+                        <!-- <button type="submit" class="btn border btn-light" name="btnSave" id="btnSave" data-dismiss="modal">Lưu</button> -->
+                        <button type="submit" class="btn border btn-light" name="btnSave" id="btnSave">Lưu</button>
+                        <p id="err" class="mt-3 text-danger">
+
+                        </p>
                     </div>
                 </form>
             </div>
@@ -154,12 +158,42 @@
             $('#addEvent').modal('show');
         });
 
-        $('#btnSave').on('click', function ()
+        let tenSuKien = $('#txtTitle');
+        let showError = $('#err')
+        
+        function checkInput(input) {
+            let value = input.val().trim();
+            let mau = /^[ a-zA-Z0-9_-àáâãäèéđêëìíîïòóôõöưùúûüấầẩẫậắằẳẵặéèẻẽẹíìỉĩịóòỏõọơớờởỡợúùủũụýỳỷỹỵ]{2,}$/;
+            let regex = /^[!@#$%^&*()_+\-=\[\]{};':\"\\|<>\/?]+$/;
+            if (value.length > 100) {
+                showError.html("Nội dung không được vượt quá 100 kí tự");
+                return false;
+            } else if (value == '') {
+                showError.html("Vui lòng điền vào trường này");
+                return false;
+            } else if (mau.test(value)) {
+                showError.html(" ");
+                return true;
+            } else {
+                showError.html("Nội dung phải chứa ít nhất 2 ký tự khác khoảng trắng và không chứa kí tự đặc biệt");
+                return false;
+            }
+            console.log(mau.test(value));
+        }
+
+        $('#btnSave').on('click', function (e)
         {
+            event.preventDefault();
             var eventName = $('#txtTitle').val();
             var eventDate = $('#txtTime').val();
+
+           if(eventName != '' && eventDate != '')
+           {
             var link = './?controller=suKien&action=save&txtTitle=' + eventName + '&txtTime=' + eventDate;
             window.location.href = link;
+           } else if(checkInput(tenSuKien) == false) {
+                event.preventDefault();
+           }
         });
 
         

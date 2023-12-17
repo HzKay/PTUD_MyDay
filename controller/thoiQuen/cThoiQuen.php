@@ -86,20 +86,26 @@
         public function insertStatusHabit()
         {
             $maND = $_SESSION['userID'];
-            $id = $_REQUEST['today'];
+            $id = $_REQUEST['today'] ?? '';
             $today = date('d');
-            $noiDung = $_REQUEST['noiDung'];
+            $noiDung = $_REQUEST['noiDung'] ?? '';
             
-            require_once './model/thoiQuen/mThoiQuen.php';
-            $mThoiQuen = new mThoiQuen();
-            $result = $mThoiQuen->insertStatusHabit($noiDung, $id, $maND);
-
-            if($result == 1)
+            if($id != '')
             {
-                header('location: ./?controller=viecQuanTrong&action=create');
+                require_once './model/thoiQuen/mThoiQuen.php';
+                $mThoiQuen = new mThoiQuen();
+                $result = $mThoiQuen->insertStatusHabit($noiDung, $id, $maND);
+    
+                if($result == 1)
+                {
+                    header('location: ./?controller=viecQuanTrong&action=create');
+                } else {
+                    header('location: ./?controller=thoiQuen&action=check');
+                }
             } else {
-                header('location: ./?controller=thoiQuen&action=check');
+                header('location: ./?controller=viecQuanTrong&action=create');
             }
+            
         }
     }
 ?>

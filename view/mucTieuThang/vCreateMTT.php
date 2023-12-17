@@ -85,15 +85,12 @@
     <script src="./js/jquery-3.6.1.min.js"></script>
     <script src="./js/jquery.animateNumber.min.js"></script>
     <script src="./js/jquery.min.js"></script>
-    <!-- <script>
+    <script>
         const text1 = document.getElementById("text1")
         const ctmt1 = document.getElementById("ctmt1")
         const ctmt2 = document.getElementById("ctmt2")
         const ctmt3 = document.getElementById("ctmt3")
         const check = document.getElementById("submit")
-
-
-        const submit = document.getElementById("submit")
 
         function isFirstDayOfMonth(date) {
             const today = new Date(date);
@@ -104,8 +101,6 @@
 
         const inputDate = new Date(); // Điều này tạo ra một đối tượng Date hiện tại.
         const isFirstDay = isFirstDayOfMonth(inputDate);
-
-
 
         document.getElementById('text1').disabled = !isFirstDay;
         document.getElementById('ctmt1').disabled = !isFirstDay;
@@ -119,21 +114,17 @@
                 ctmt3.setAttribute("disabled","disabled")
                 check.setAttribute("disabled","disabled")
 
-
-                submit.setAttribute("disabled","disabled")
-
             } else {
                 text1.removeAttribute("disabled")
                 ctmt1.removeAttribute("disabled")
                 ctmt2.removeAttribute("disabled")
                 ctmt3.removeAttribute("disabled")
                 check.removeAttribute("disabled")
-
         }
 
         $(document).ready(function() {
             $("#text1").on("input", function() {
-                mucTieuThang("#text1");
+                chuDeThang("#text1");
             });
 
             $("#ctmt1").on("input", function() {
@@ -150,20 +141,35 @@
         });
 
         function mucTieuThang(dt) {
-            let mucTieuThang = $(dt).val();
-            let btcq = /^[a-zA-Z0-9_ -àáâãäèéêëìíîïòóôõöùúûüấầẩẫậắằẳẵặéèẻẽẹíìỉĩịóòỏõọớờởỡợúùủũụýỳỷỹỵ]{2,200}$/;
-            if (mucTieuThang.length === 0) {
-                $("#err").html("Nội dung không được để trống");
+            let mucTieuThang = $(dt).val().trim();
+            let btcq = /^[ a-zA-Z0-9_-àáâãäèéđêëìíîïòóôõöưùúûüấầẩẫậắằẳẵặéèẻẽẹíìỉĩịóòỏõọơớờởỡợúùủũụýỳỷỹỵ]{2,200}$/;
+            if (mucTieuThang.length > 200) {
+                $("#err").html("Nội dung bị giới hạn dưới 200 ký tự");
                 return false;
             } else if (btcq.test(mucTieuThang)) {
-                $("#err").html("");
+                $("#err").html(" ");
                 return true;
             } else {
-                $("#err").html("Nội dung phải chứa ít nhất 2 ký tự và không chứa kí tự đặc biệt");
+                $("#err").html("Nội dung phải chứa ít nhất 2 ký tự khác khoảng trắng và không chứa kí tự đặc biệt");
                 return false;
             }
         }
-    </script> -->
+
+        function chuDeThang(dt) {
+            let chuDeThang = $(dt).val().trim();
+            let btcq = /^[ a-zA-Z0-9_-àáâãäèéđêëìíîïòóôõöưùúûüấầẩẫậắằẳẵặéèẻẽẹíìỉĩịóòỏõọơớờởỡợúùủũụýỳỷỹỵ]{2,200}$/;
+            if (chuDeThang.length > 200) {
+                $("#err").html("Nội dung bị giới hạn dưới 100 ký tự");
+                return false;
+            } else if (btcq.test(chuDeThang)) {
+                $("#err").html("");
+                return true;
+            } else {
+                $("#err").html("Nội dung phải chứa ít nhất 2 ký tự khác khoảng trắng và không chứa kí tự đặc biệt");
+                return false;
+            }
+        }
+    </script>
 
 <?php
     include_once './view/navbar/vFooter.php';

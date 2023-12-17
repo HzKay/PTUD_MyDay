@@ -39,8 +39,10 @@
                 
                 if($result == 1)
                 {
-                    echo "<script>alert('Lưu thành công!')</script>";  
-                    header('location: ./?controller=thoiQuen&action=create');
+                    echo "<script type='text/javascript'>
+                        alert('Lưu thành công!');
+                        window.location.href = './?controller=thoiQuen&action=create'</script>";  
+                    // header('location: ');
                 } else 
                 {
                     echo "<script>alert('Gặp lỗi khi lưu!')</script>";  

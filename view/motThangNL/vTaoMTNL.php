@@ -23,8 +23,10 @@ include_once './view/navbar/vNavbar.php';
                     Những điều bạn đã làm để phát triển TRÍ tuệ.
                 </label>
                 <input type="text" name="tri" class="form-control border border-dark" id="tri" placeholder="Mời bạn nhập nội dung..." style="height: 60px; width: 340px;max-width: 500px; max-height: 100px;" required></input>
-                <input type="submit" class="btn btn-dark" name="submit-MTNL" id="submit" value="Lưu" style="margin: 10px 0 0 264px">
                 
+                
+                <input type="submit" class="btn btn-dark" name="submit-MTNL" id="submit" value="Lưu" style="margin: 10px 0 0 264px">
+                <p id="errorMTNL" class="text-danger"></p>
                 <input style="padding-left: 15px; width: 94px; display: block !important;margin-top: 10px; margin-left: 50px;" class="form-control border border-dark position-absolute start-100 top-0" type="text" name="date" id="date" value="<?php echo $today;?>" disabled>
             </form>
         </div>
@@ -32,12 +34,52 @@ include_once './view/navbar/vNavbar.php';
 </main>
     <script src="./js/jquery-3.6.1.min.js"></script>
     <script src="./js/jquery.animateNumber.min.js"></script>
-    <script src="./js/jquery.min.js"></script>';
+    <script src="./js/jquery.min.js"></script>
     <script>
         const than = document.getElementById("than")
         const tam = document.getElementById("tam")
         const tri = document.getElementById("tri")
         const submit = document.getElementById("submit")
+
+        function checkInput(input)
+        {
+            let showError = $("#errorMTNL")
+            value = $(input).val().trim()
+            let mau = /^[ a-zA-Z0-9_-àáâãäèéđêëìíîïòóôõöưùúûüấầẩẫậắằẳẵặéèẻẽẹíìỉĩịóòỏõọơớờởỡợúùủũụýỳỷỹỵ]{2,}$/;
+
+            if (value.length > 200) {
+                showError.html("Nội dung bị giới hạn dưới 200 ký tự");
+                return false;
+            } else if (mau.test(value)) {
+                showError.html(" ");
+                return true;
+            } else {
+                showError.html("Nội dung phải chứa ít nhất 2 ký tự khác khoảng trắng và không chứa kí tự đặc biệt");
+                return false;
+            }
+        }
+
+        $(document).ready(function() {
+            $('#than').on("input", function() {
+                checkInput('#than');
+            });
+
+            $('#tam').on("input", function() {
+                checkInput('#tam');
+            });
+
+            $('#tri').on("input", function() {
+                checkInput('#tri');
+            });
+
+            $('#submit').click(function (e) {
+                if(checkInput('#than') == false || checkInput('#tam') == false || checkInput('#tri') == false)
+                {
+                    e.preventDefault();
+                }
+            })
+        });
+
         function isFirstDayOfMonth(date) {
             const today = new Date(date);
             // nextDay.setDate(date.getDate() + 1);

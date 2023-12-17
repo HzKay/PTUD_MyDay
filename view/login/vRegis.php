@@ -112,9 +112,9 @@
 
             function checkMatKhau()
             {
-                let mau = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*+=()_-]{8,}$/;
+                let mau = /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d!@#$%^&*+=()_-]{8,}$/;
                 if (!mau.test(matKhau.val())) {
-                    $("#statusRegis").html("Mật khẩu phải có từ 8 ký tự trở lên, và có một chữ cái viết hoa, một chữ cái viết thường và một số.");
+                    $("#statusRegis").html("Mật khẩu phải có từ 8 ký tự trở lên, phải chứa chữ cái và số.");
                     return false;
                 }
                 $("#statusRegis").html("");

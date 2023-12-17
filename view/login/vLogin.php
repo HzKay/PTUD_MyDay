@@ -62,17 +62,17 @@
             }
             username.blur(checkUsername);
 
-            function checkMatKhau()
-            {
-                let mau = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*+=()_-]{8,}$/;
-                if (!mau.test(matKhau.val())) {
-                    $("#statusLogin").html("Mật khẩu phải có từ 8 ký tự trở lên, và có một chữ cái viết hoa, một chữ cái viết thường và một số.");
-                    return false;
-                }
-                $("#statusLogin").html("");
-                return true;
-            }
-            matKhau.blur(checkMatKhau);
+            // function checkMatKhau()
+            // {
+            //     let mau = /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d!@#$%^&*+=()_-]{8,}$/;
+            //     if (!mau.test(matKhau.val())) {
+            //         $("#statusLogin").html("Mật khẩu phải có từ 8 ký tự trở lên");
+            //         return false;
+            //     }
+            //     $("#statusLogin").html("");
+            //     return true;
+            // }
+            // matKhau.blur(checkMatKhau);
         })
     </script>
 </body>

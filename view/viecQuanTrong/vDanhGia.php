@@ -50,6 +50,7 @@ class viewdanhgia{
         echo "<input type='text' value='{$ghiChu}' '' {$status} name='ghichu' class='p-3' style='width:50%;height:80px; margin:0 auto; display:table;'>";
 
         echo "<br><button type='submit' class='btn btn-primary border' name='submit'>{$button}</button>";
+        echo "<br><p id='err' class='mt-3 text-danger'> </p>";
         echo "</form></div>";
     }
 }
@@ -57,23 +58,22 @@ class viewdanhgia{
 echo "<script>
 window.onload = function() {
     document.getElementsByName('ghichu')[0].addEventListener('input', function(e) {
-        if(e.target.value.length > 200) {
-            document.getElementsByName('submit')[0].disabled = true;
-        } else {
-            document.getElementsByName('submit')[0].disabled = false;
-        }
-    });
-}
-</script>";
+        var regex = /[!@#$%^&*()_+\-=\[\]{};':\"\\|<>\/?]+/;
+        var noti = document.getElementById('err');
+        var value = e.target.value.trim();
 
-echo "<script>
-window.onload = function() {
-    document.getElementsByName('ghichu')[0].addEventListener('input', function(e) {
-        var regex = /[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?]+/;
-        if(regex.test(e.target.value)) {
+        if(value == '' || value.length < 2) {
             document.getElementsByName('submit')[0].disabled = true;
+            noti.innerHTML = 'Ghi chú phải chứa ít nhất 2 ký tự khác khoảng trắng';
+        } else if(value.length > 200) {
+            document.getElementsByName('submit')[0].disabled = true;
+            noti.innerHTML = 'Ghi chú bị giới hạn 200 kí tự';
+        } else if(regex.test(value)) {
+            document.getElementsByName('submit')[0].disabled = true;
+            noti.innerHTML = 'Ghi chú không được chứa ký tự đặc biệt';
         } else {
             document.getElementsByName('submit')[0].disabled = false;
+            noti.innerHTML = ' ';
         }
     });
 }
@@ -112,6 +112,4 @@ if (isset($_REQUEST["submit"]) && $_REQUEST["action"] != 'index') {
     }
   }
 }
-
-
 ?>
